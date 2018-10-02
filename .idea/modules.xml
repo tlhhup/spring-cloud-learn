@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/chapter-2/chapter-2.iml" filepath="$PROJECT_DIR$/chapter-2/chapter-2.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-cloud-learn.iml" filepath="$PROJECT_DIR$/spring-cloud-learn.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-eureka-server/tlh-eureka-server.iml" filepath="$PROJECT_DIR$/tlh-eureka-server/tlh-eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-service-consumer/tlh-service-consumer.iml" filepath="$PROJECT_DIR$/tlh-service-consumer/tlh-service-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-service-provider/tlh-service-provider.iml" filepath="$PROJECT_DIR$/tlh-service-provider/tlh-service-provider.iml" />
     </modules>
   </component>

@@ -10,3 +10,18 @@
             super.configure(http);
         }
     }
+
+快速剔除down掉的client
+
+    eureka:
+      client:
+        register-with-eureka: false # 去掉自我注册
+        fetch-registry: false       # 不用拉取注册信息
+        service-url:
+          defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      instance:
+        appname: eureka-server
+        hostname: localhost
+      server:
+        enable-self-preservation: false # 在开发阶段关闭保护模式
+        eviction-interval-timer-in-ms: 5000 # 清理时间

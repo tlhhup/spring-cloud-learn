@@ -1,8 +1,8 @@
 spring:
   application:
-    name: user-service
+    name: eureka-comsumer
 server:
-  port: 8082
+  port: 8083
 eureka:
   client:
     healthcheck:
@@ -10,9 +10,9 @@ eureka:
     service-url:
       defaultZone: http://tlh:123456@localhost:8081/eureka/
   instance:
-    appname: eureka-provider
-    hostname: tlh-user
+    appname: eureka-comsumer
+    hostname: tlh-consume
     instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
     lease-renewal-interval-in-seconds: 5 # 发送给注册中心的心跳频率
     lease-expiration-duration-in-seconds: 5 # 心跳间隔的超时时间，如果没有收到则移除该instance
-    prefer-ip-address: true # 使用IP地址注册
+    prefer-ip-address: true

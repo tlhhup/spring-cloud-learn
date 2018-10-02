@@ -11,6 +11,7 @@
         <module>chapter-2</module>
         <module>tlh-eureka-server</module>
         <module>tlh-service-provider</module>
+        <module>tlh-service-consumer</module>
     </modules>
     <packaging>pom</packaging>
 

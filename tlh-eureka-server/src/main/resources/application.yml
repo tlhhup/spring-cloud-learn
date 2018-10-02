@@ -16,5 +16,6 @@ eureka:
     hostname: localhost
   server:
     enable-self-preservation: false # 在开发阶段关闭保护模式
+    eviction-interval-timer-in-ms: 5000 # 清理时间
 server:
   port: 8081

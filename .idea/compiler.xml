@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="chapter-2" />
         <module name="tlh-eureka-server" />
+        <module name="tlh-service-consumer" />
         <module name="tlh-service-provider" />
       </profile>
     </annotationProcessing>
@@ -15,6 +16,7 @@
       <module name="chapter-2" target="1.8" />
       <module name="spring-cloud-learn" target="1.8" />
       <module name="tlh-eureka-server" target="1.8" />
+      <module name="tlh-service-consumer" target="1.8" />
       <module name="tlh-service-provider" target="1.8" />
     </bytecodeTargetLevel>
   </component>
