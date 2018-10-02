@@ -9,6 +9,8 @@
     <version>1.0.0</version>
     <modules>
         <module>chapter-2</module>
+        <module>tlh-eureka-server</module>
+        <module>tlh-service-provider</module>
     </modules>
     <packaging>pom</packaging>
 
