@@ -14,6 +14,8 @@ eureka:
     service-url:
       defaultZone: http://tlh:123456@localhost:8081/eureka/
 feign:
+  hystrix:
+    enabled: true # 开启hystrix支持
   client:
     config:
       default:
@@ -25,3 +27,8 @@ feign:
       enabled: true
     response:
       enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream # 开启stream 的web接口

@@ -3,22 +3,22 @@ package org.tlh.springcloud;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 /**
  * @author huping
  * @desc
  * @date 18/10/3
  */
-@EnableHystrix
+@EnableTurbine
 @EnableEurekaClient
-@EnableFeignClients
+@EnableHystrixDashboard
 @SpringBootApplication
-public class FeignClientApplication {
+public class HystrixDashboardApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FeignClientApplication.class,args);
+        SpringApplication.run(HystrixDashboardApplication.class,args);
     }
 
 }

@@ -16,3 +16,8 @@ eureka:
     lease-renewal-interval-in-seconds: 5 # 发送给注册中心的心跳频率
     lease-expiration-duration-in-seconds: 5 # 心跳间隔的超时时间，如果没有收到则移除该instance
     prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream # 开启stream 的web接口

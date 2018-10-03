@@ -13,6 +13,7 @@
         <module>tlh-service-provider</module>
         <module>tlh-service-consumer</module>
         <module>tlh-consume-feign</module>
+        <module>tlh-hystrix-dashboard</module>
     </modules>
     <packaging>pom</packaging>
 

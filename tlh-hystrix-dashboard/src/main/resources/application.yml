@@ -1,0 +1,15 @@
+server:
+  port: 8085
+eureka:
+  client:
+    service-url:
+      defaultZone: http://tlh:123456@localhost:8081/eureka/
+  instance:
+    appname: hystrix-dashboard
+spring:
+  application:
+    name: hystrix-dashboard
+turbine:
+  aggregator:
+    clusterConfig: default,EUREKA-COMSUMER,CONSUME-FEIGN # 需要监控的集群信息
+  appConfig: eureka-comsumer,consume-feign # 需要聚合的服务的
