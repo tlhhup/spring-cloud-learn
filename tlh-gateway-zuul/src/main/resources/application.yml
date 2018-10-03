@@ -1,0 +1,12 @@
+server:
+  port: 8086
+eureka:
+  instance:
+    appname: gateway-zuul
+  client:
+    service-url: http://tlh:123456@localhost:8081/eureka/
+spring:
+  application:
+    name: gateway-zuul
+zuul:
+  retryable: true
