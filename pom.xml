@@ -12,6 +12,7 @@
         <module>tlh-eureka-server</module>
         <module>tlh-service-provider</module>
         <module>tlh-service-consumer</module>
+        <module>tlh-consume-feign</module>
     </modules>
     <packaging>pom</packaging>
 
