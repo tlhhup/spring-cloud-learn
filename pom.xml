@@ -17,6 +17,8 @@
         <module>tlh-gateway-zuul</module>
         <module>tlh-config-server</module>
         <module>tlh-config-server-db</module>
+        <module>tlh-scc-ui-server</module>
+        <module>tlh-scc-config-admin</module>
     </modules>
     <packaging>pom</packaging>
 

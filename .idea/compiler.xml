@@ -13,6 +13,8 @@
         <module name="tlh-eureka-server" />
         <module name="tlh-gateway-zuul" />
         <module name="tlh-hystrix-dashboard" />
+        <module name="tlh-scc-config-admin" />
+        <module name="tlh-scc-ui-server" />
         <module name="tlh-service-consumer" />
         <module name="tlh-service-provider" />
       </profile>
@@ -26,6 +28,8 @@
       <module name="tlh-eureka-server" target="1.8" />
       <module name="tlh-gateway-zuul" target="1.8" />
       <module name="tlh-hystrix-dashboard" target="1.8" />
+      <module name="tlh-scc-config-admin" target="1.6" />
+      <module name="tlh-scc-ui-server" target="1.6" />
       <module name="tlh-service-consumer" target="1.8" />
       <module name="tlh-service-provider" target="1.8" />
     </bytecodeTargetLevel>

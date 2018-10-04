@@ -1,0 +1,6 @@
+server:
+  port: 10032
+scca:
+  ui:
+    rest-server-url: http://localhost:8089
+    rest-server-context-path: /tlh
