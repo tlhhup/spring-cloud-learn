@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="chapter-2" />
+        <module name="tlh-config-server" />
+        <module name="tlh-config-server-db" />
         <module name="tlh-consume-feign" />
         <module name="tlh-eureka-server" />
         <module name="tlh-gateway-zuul" />
@@ -18,6 +20,8 @@
     <bytecodeTargetLevel>
       <module name="chapter-2" target="1.8" />
       <module name="spring-cloud-learn" target="1.8" />
+      <module name="tlh-config-server" target="1.8" />
+      <module name="tlh-config-server-db" target="1.8" />
       <module name="tlh-consume-feign" target="1.8" />
       <module name="tlh-eureka-server" target="1.8" />
       <module name="tlh-gateway-zuul" target="1.8" />

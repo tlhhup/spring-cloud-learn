@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/chapter-2/chapter-2.iml" filepath="$PROJECT_DIR$/chapter-2/chapter-2.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-cloud-learn.iml" filepath="$PROJECT_DIR$/spring-cloud-learn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-config-server/tlh-config-server.iml" filepath="$PROJECT_DIR$/tlh-config-server/tlh-config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-config-server-db/tlh-config-server-db.iml" filepath="$PROJECT_DIR$/tlh-config-server-db/tlh-config-server-db.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-consume-feign/tlh-consume-feign.iml" filepath="$PROJECT_DIR$/tlh-consume-feign/tlh-consume-feign.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-eureka-server/tlh-eureka-server.iml" filepath="$PROJECT_DIR$/tlh-eureka-server/tlh-eureka-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-gateway-zuul/tlh-gateway-zuul.iml" filepath="$PROJECT_DIR$/tlh-gateway-zuul/tlh-gateway-zuul.iml" />

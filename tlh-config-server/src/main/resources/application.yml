@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://Volumes/文档/学习/spring-cloud-learn/config-repo
+server:
+  port: 8086
