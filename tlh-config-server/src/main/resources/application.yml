@@ -4,5 +4,21 @@ spring:
       server:
         git:
           uri: file://Volumes/文档/学习/spring-cloud-learn/config-repo
+      discovery:
+        enabled: true
+
+  application:
+    name: git-config-server
 server:
   port: 8086
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://tlh:123456@localhost:8081/eureka/
+      defaultZone: http://localhost:8089/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    appname: git-config-server
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5

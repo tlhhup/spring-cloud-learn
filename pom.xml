@@ -19,6 +19,7 @@
         <module>tlh-config-server-db</module>
         <module>tlh-scc-ui-server</module>
         <module>tlh-scc-config-admin</module>
+        <module>tlh-eureka-server-noauth</module>
     </modules>
     <packaging>pom</packaging>
 

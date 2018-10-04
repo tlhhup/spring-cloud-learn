@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/tlh-config-server-db/tlh-config-server-db.iml" filepath="$PROJECT_DIR$/tlh-config-server-db/tlh-config-server-db.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-consume-feign/tlh-consume-feign.iml" filepath="$PROJECT_DIR$/tlh-consume-feign/tlh-consume-feign.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-eureka-server/tlh-eureka-server.iml" filepath="$PROJECT_DIR$/tlh-eureka-server/tlh-eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-eureka-server-noauth/tlh-eureka-server-noauth.iml" filepath="$PROJECT_DIR$/tlh-eureka-server-noauth/tlh-eureka-server-noauth.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-gateway-zuul/tlh-gateway-zuul.iml" filepath="$PROJECT_DIR$/tlh-gateway-zuul/tlh-gateway-zuul.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-hystrix-dashboard/tlh-hystrix-dashboard.iml" filepath="$PROJECT_DIR$/tlh-hystrix-dashboard/tlh-hystrix-dashboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-scc-config-admin/tlh-scc-config-admin.iml" filepath="$PROJECT_DIR$/tlh-scc-config-admin/tlh-scc-config-admin.iml" />

@@ -17,6 +17,15 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-security:
-  user:
-    name: username
+  application:
+    name: tlh-config-admin
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    appname: tlh-config-admin
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5
