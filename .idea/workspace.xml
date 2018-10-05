@@ -497,7 +497,7 @@
       <workItem from="1538650125028" duration="9846000" />
       <workItem from="1538665195707" duration="8486000" />
       <workItem from="1538707659468" duration="12935000" />
-      <workItem from="1538721091294" duration="4969000" />
+      <workItem from="1538721091294" duration="5099000" />
     </task>
     <task id="LOCAL-00001" summary="1.添加异步自定义线程池&#10;2.自动生成服务器端口号">
       <created>1538402778190</created>
@@ -562,11 +562,18 @@
       <option name="project" value="LOCAL" />
       <updated>1538725424399</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="1.更新目录">
+      <created>1538726297461</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1538726297461</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101374000" />
+    <option name="totallyTimeSpent" value="101504000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="815" extended-state="6" />
@@ -672,7 +679,8 @@
     <MESSAGE value="1.添加config和客户端&#10;2.使用git或mysql来存储配置信息" />
     <MESSAGE value="1.集成scca项目的提供的springcloud的后台管理" />
     <MESSAGE value="1.集成消息总线实现配置自动刷新(server端)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.集成消息总线实现配置自动刷新(server端)" />
+    <MESSAGE value="1.更新目录" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.更新目录" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
