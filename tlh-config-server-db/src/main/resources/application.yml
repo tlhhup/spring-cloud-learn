@@ -17,6 +17,11 @@ spring:
           order: 0
   application:
     name: tlh-config-db
+  rabbitmq:
+    host: localhost
+    port: 5672
+    password: guest
+    username: guest
 eureka:
   client:
     service-url:
@@ -27,3 +32,8 @@ eureka:
     appname: tlh-config-db
     lease-expiration-duration-in-seconds: 5
     lease-renewal-interval-in-seconds: 5
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

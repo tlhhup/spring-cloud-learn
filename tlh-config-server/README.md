@@ -158,4 +158,28 @@
 	4. 触发刷新 
 	
 			POST http://待刷新的服务地址/actuator/refresh
-2. 集成消息总线自动刷新
+	5. RefreshScope说明
+		1. 当该注解添加在使用了Configuration注解的配置类时，并不意味着该类中的所有的bean都会重新被加载，除非该bean也添加了RefreshScope注解
+2. 集成消息总线自动刷新(config-server端)
+	1. 添加依赖(在server和client端都需要添加)
+	
+			<!-- spring cloud bus -->
+	        <dependency>
+	            <groupId>org.springframework.cloud</groupId>
+	            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+	            <version>2.0.0.RELEASE</version>
+	        </dependency>
+	2. 增加配置(在server端配置)
+	
+			management:
+			  endpoints:
+			    web:
+			      exposure:
+			        include: bus-refresh  # 开放bus-refresh端点
+	3. 触发端点 
+		1. 所有节点：[/actuator/bus-refresh],methods=[POST]
+		2. 指定节点：[/actuator/bus-refresh/{destination}],methods=[POST] 
+	4. 说明
+		1. 采用的是本地的rabbitmq，所以才用默认配置即可 
+		2. 在sever端出发bus-refresh之后，会通过消息总线将事件发送出去，从而调用client的refresh来达到配置的自动刷新
+		3. bus-refresh可以使得加了RefreshScope注解和ConfigurationProperties注解的数据从新加载
