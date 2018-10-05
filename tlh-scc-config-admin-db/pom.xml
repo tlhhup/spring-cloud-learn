@@ -13,6 +13,7 @@
 
     <properties>
         <scca.version>1.0.0-RELEASE</scca.version>
+        <spring.boot.admin.version>1.5.7</spring.boot.admin.version>
     </properties>
 
     <dependencies>
@@ -51,6 +52,15 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${spring.boot.admin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 

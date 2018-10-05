@@ -16,5 +16,6 @@
     <file url="file://$PROJECT_DIR$/tlh-scc-ui-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-service-consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-service-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlh-spring-boot-admin" charset="UTF-8" />
   </component>
 </project>

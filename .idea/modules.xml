@@ -17,6 +17,7 @@
       <module fileurl="file://$PROJECT_DIR$/tlh-scc-ui-server/tlh-scc-ui-server.iml" filepath="$PROJECT_DIR$/tlh-scc-ui-server/tlh-scc-ui-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-service-consumer/tlh-service-consumer.iml" filepath="$PROJECT_DIR$/tlh-service-consumer/tlh-service-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-service-provider/tlh-service-provider.iml" filepath="$PROJECT_DIR$/tlh-service-provider/tlh-service-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-spring-boot-admin/tlh-spring-boot-admin.iml" filepath="$PROJECT_DIR$/tlh-spring-boot-admin/tlh-spring-boot-admin.iml" />
     </modules>
   </component>
 </project>

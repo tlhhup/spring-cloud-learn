@@ -65,6 +65,9 @@
 			  client:
 			    service-url:
 			      defaultZone: http://localhost:8089/eureka/
+	3. 说明
+		1. 好处：适用于配置中心地址会变的场景
+		2. 坏处：增加了网络流量，需要先从注册中心获取配置中心的地址
 
 ###server端该用db来存储数据
  通过JdbcEnvironmentRepository来获取数据库中的配置信息

@@ -27,3 +27,6 @@ eureka:
     appname: tlh-config-admin-db
     lease-expiration-duration-in-seconds: 5
     lease-renewal-interval-in-seconds: 5
+    metadata-map: # 设置spring boot admin 的认证信息
+      user.name: tlh
+      user.password: 123456

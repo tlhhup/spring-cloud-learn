@@ -1,0 +1,23 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: tlh-admin
+  security:
+    user:
+      name: tlh
+      password: 123456
+  boot:
+    admin:
+      discovery:
+        ignored-services: tlh-admin # 将自己忽略掉，不然在admin中会看到
+eureka:
+  instance:
+    appname: tlh-admin
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8089/eureka/

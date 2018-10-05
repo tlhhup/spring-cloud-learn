@@ -20,6 +20,7 @@
         <module name="tlh-scc-ui-server" />
         <module name="tlh-service-consumer" />
         <module name="tlh-service-provider" />
+        <module name="tlh-spring-boot-admin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -38,6 +39,7 @@
       <module name="tlh-scc-ui-server" target="1.6" />
       <module name="tlh-service-consumer" target="1.8" />
       <module name="tlh-service-provider" target="1.8" />
+      <module name="tlh-spring-boot-admin" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
