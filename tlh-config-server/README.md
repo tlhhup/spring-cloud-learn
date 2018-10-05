@@ -123,3 +123,39 @@
 		SET SQL_SAFE_UPDATES = 0;
 		-- label必须要有值，其默认为master
 		update PROPERTIES set label='master' where APPLICATION='consume-feign';
+
+###属性client的配置信息
+1. 手动刷新
+	1. 添加依赖
+
+			<dependency>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-starter-actuator</artifactId>
+	        </dependency>
+	2. 在需要刷新属性的地方添加RefreshScope注解
+
+			@RefreshScope
+			@RestController
+			@RequestMapping("/config")
+			public class SccConfigClientController {
+			
+			    @Value("${name}")
+			    private String name;
+			
+			    @GetMapping("/name")
+			    public String name(){
+			        return name;
+			    }
+			
+			}
+	3. 开启refresh端点(http协议默认关闭)
+
+			management:
+			  endpoints:
+			    web:
+			      exposure:
+			        include: refresh
+	4. 触发刷新 
+	
+			POST http://待刷新的服务地址/actuator/refresh
+2. 集成消息总线自动刷新

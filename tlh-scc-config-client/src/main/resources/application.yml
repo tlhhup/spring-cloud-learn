@@ -3,3 +3,8 @@ server:
 spring:
   application:
     name: scc-config-client
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh

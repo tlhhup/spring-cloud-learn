@@ -94,3 +94,5 @@
 				select p.p_key as `KEY`,p.p_value as 'VALUE' from property p inner join env e on e.id=p.env_id inner join project pt on pt.id=p.project_id inner join label l on l.id=p.label_id where pt.name=? and e.name=? and l.name=? 
 3. client端搭建
 	1. 和普通的config-client的搭建相同，可以参照tlh-config-server项目中的README.md的说明,直接从config-server中获取配置信息
+4. **注意**
+	1. 注册中心采用非认证的方式	 
