@@ -3,4 +3,14 @@ spring:
     config:
       profile: dev
       label: master
-      uri: http://localhost:8087
+      discovery:
+        enabled: true
+        service-id: tlh-config-db
+eureka:
+  instance:
+    appname: scc-config-client
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 5
+  client:
+    service-url:
+      defaultZone: http://localhost:8089/eureka/

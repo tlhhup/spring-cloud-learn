@@ -40,6 +40,31 @@
 		  cloud:
 		    config:
 		      uri: http://localhost:8086 # 配置服务器的地址
+3. 客户端通过服务发现来拉取配置信息
+	1. 添加依赖
+	
+			<dependency>
+	            <groupId>org.springframework.cloud</groupId>
+	            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+	        </dependency>
+	2. 在bootstrap.yml文件中添加注册中心，及配置中心的serviceID
+
+			spring:
+			  cloud:
+			    config:
+			      profile: dev				#来取的配置环境
+			      label: master				#拉取的label
+			      discovery:
+			        enabled: true			#开启服务发现
+			        service-id: tlh-config-db # 配置中心在注册中心的ID
+			eureka:
+			  instance:
+			    appname: scc-config-client
+			    lease-renewal-interval-in-seconds: 5
+			    lease-expiration-duration-in-seconds: 5
+			  client:
+			    service-url:
+			      defaultZone: http://localhost:8089/eureka/
 
 ###server端该用db来存储数据
  通过JdbcEnvironmentRepository来获取数据库中的配置信息
