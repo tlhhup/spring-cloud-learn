@@ -13,5 +13,17 @@ spring:
     config:
       server:
         jdbc:
-          sql: SELECT `KEY`, `VALUE` from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?
+          sql: select p.p_key as `KEY`,p.p_value as 'VALUE' from property p inner join env e on e.id=p.env_id inner join project pt on pt.id=p.project_id inner join label l on l.id=p.label_id where pt.name=? and e.name=? and l.name=?
           order: 0
+  application:
+    name: tlh-config-db
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    appname: tlh-config-db
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5

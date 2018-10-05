@@ -20,6 +20,8 @@
         <module>tlh-scc-ui-server</module>
         <module>tlh-scc-config-admin</module>
         <module>tlh-eureka-server-noauth</module>
+        <module>tlh-scc-config-admin-db</module>
+        <module>tlh-scc-config-client</module>
     </modules>
     <packaging>pom</packaging>
 
