@@ -1,5 +1,6 @@
 package org.tlh.springcloud.config;
 
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.tlh.springcloud.dto.ResponseDto;
@@ -19,5 +20,9 @@ public class AuthExceptionHandler {
     }
 
     // todo 校验异常的处理  响应处理
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseDto handlerValidationException(MethodArgumentNotValidException e){
+        return new ResponseDto(400,null,e.getMessage());
+    }
 
 }
