@@ -1,3 +1,4 @@
+###eureka服务端配置
 在启用security的时候需要针对eureka的客户端配置csrf
 
     @EnableWebSecurity

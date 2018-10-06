@@ -14,7 +14,7 @@ spring-cloud组件学习和第三方开源项目集成
 11. tlh-scc-config-admin：使用scca admin实现的基于git存储的配置中心管理后台(需要依赖于github的API)
 12. tlh-scc-config-admin-db：使用scca admin实现的基于mysql存储的配置中心管理后台
 13. tlh-scc-config-client：配置中心客户端(集成消息总线) 
-14. tlh-spring-boot-admin：
+14. tlh-spring-boot-admin：集成spring-boot-admin
 
 
 

@@ -11,6 +11,9 @@ eureka:
     appname: scc-config-client
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 5
+    metadata-map:
+      user.name: tlh
+      user.password: 123456
   client:
     service-url:
       defaultZone: http://localhost:8089/eureka/

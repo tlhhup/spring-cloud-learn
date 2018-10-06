@@ -1,3 +1,4 @@
+###eureka客服端配置
 
 1. 自定义示例ID
    
@@ -11,7 +12,7 @@
 4. 采用IP注册, 如果hostname不能被解析时使用IP向eureka发送请求   
     
         prefer-ip-address: true
-5. Ribbon客户端负载均衡原理(通过对resttemplate的请求进行拦截实现)
+5. Ribbon客户端**负载均衡原理**(通过对resttemplate的请求进行拦截实现)
 	1. 通过在resttemplate添加LoadBalanced注解，可以使得LoadBalancerClient对该resttemplate进行包装
 	2. Ribbon的核心自动装配类为LoadBalancerAutoConfiguration
 
@@ -107,3 +108,111 @@
 					return uri;
 				}
 			}
+	4. 可以通过拦截来扩展resttemplate的功能(ClientHttpRequestInterceptor)
+		1. 服务间采用jtw认证的时候，可以通过定义拦截器来，在发送请求前将token动态添加到请求头中 
+
+###集成hystrix
+1. 添加依赖
+
+		<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+2. 开启hystrix
+
+		@EnableHystrix //开启hystrix支持
+		@EnableEurekaClient
+		@SpringBootApplication
+		public class EurekaConsumeApplication {
+		
+		    @Bean
+		    @LoadBalanced
+		    public RestTemplate restTemplate(){
+		        return new RestTemplate();
+		    }
+		
+		    public static void main(String[] args) {
+		        SpringApplication.run(EurekaConsumeApplication.class,args);
+		    }
+		
+		}
+3. 使用hystrix提供的服务降级、请求合并
+
+		@RestController
+		@RequestMapping("/userAuth")
+		public class UserAuthController {
+		
+		    @Autowired
+		    private RestTemplate restTemplate;
+		
+		    @PostMapping("/register")
+		    @HystrixCommand(fallbackMethod = "registerFail")//定义hystrixcommand,设置失败回调
+		    public String register(){
+		        return this.restTemplate.postForEntity("http://user-service/UserController/add",null,String.class).getBody();
+		    }
+		
+		    public String registerFail(){
+		        return "fail";
+		    }
+		
+		    @DeleteMapping("/delete/{id}")
+		    @HystrixCollapser(batchMethod = "batchDelete",collapserProperties = {
+		            @HystrixProperty(name="timerDelayInMilliseconds", value = "100")
+		    })//请求合并
+		    public String delete(@PathVariable("id")Integer id){
+		        this.restTemplate.delete("http://user-service/UserController/delete/{id}",id);
+		        return null;
+		    }
+		
+		    @HystrixCommand(fallbackMethod = "deleteFail")
+		    public List<String> batchDelete(List<Integer> ids){
+		        System.out.println("batchDelete");
+		        Map<String,List<Integer>> param=new HashMap<>();
+		        param.put("ids",ids);
+		        this.restTemplate.delete("http://user-service/UserController/delete",param);
+		        return Arrays.asList("user");
+		    }
+		
+		    public List<String> deleteFail(List<Integer> ids){
+		        System.out.println("deleteFail");
+		        return Arrays.asList("user");
+		    }
+	
+		}	
+4. 配置hystrix收集web接口(需要actuator)
+
+		management:
+		  endpoints:
+		    web:
+		      exposure:
+		        include: hystrix.stream # 开启stream 的web接口
+5. 处理请求合并报空指针问题
+	1. 原因HystrixRequestContext在请求合并调用时没有初始化
+	2. 处理：通过spring mvc的拦截器处理
+		1. 定义拦截器
+		
+				public class HystrixContextInitInterceptor implements HandlerInterceptor {
+				
+				    private HystrixRequestContext hystrixRequestContext;
+				
+				    @Override
+				    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+				        hystrixRequestContext=HystrixRequestContext.initializeContext();
+				        return true;
+				    }
+				
+				    @Override
+				    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
+				        hystrixRequestContext.shutdown();
+				    }
+				}
+		2. 注入拦截器
+		
+				@Configuration
+				public class CollapsingConfiguration implements WebMvcConfigurer {
+				
+				    @Override
+				    public void addInterceptors(InterceptorRegistry registry) {
+				        registry.addInterceptor(new HystrixContextInitInterceptor());
+				    }
+				}  	
