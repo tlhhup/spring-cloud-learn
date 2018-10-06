@@ -24,7 +24,7 @@ spring:
     hibernate:
       ddl-auto: update
   messages:
-    basename:
+    basename: error
 swagger:
   enabled: true
   title: 认证中心
