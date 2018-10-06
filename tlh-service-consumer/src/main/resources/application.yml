@@ -8,7 +8,8 @@ eureka:
     healthcheck:
       enabled: true
     service-url:
-      defaultZone: http://tlh:123456@localhost:8081/eureka/
+#      defaultZone: http://tlh:123456@localhost:8081/eureka/
+      defaultZone: http://localhost:8089/eureka/
   instance:
     appname: eureka-comsumer
     hostname: tlh-consume

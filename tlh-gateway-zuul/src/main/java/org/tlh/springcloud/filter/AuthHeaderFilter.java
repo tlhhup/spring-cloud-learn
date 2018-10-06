@@ -6,15 +6,13 @@ import com.netflix.zuul.exception.ZuulException;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @author huping
  * @desc
- * @date 18/10/3
+ * @date 18/10/6
  */
 @Component
-public class PreRouteFilter extends ZuulFilter {
+public class AuthHeaderFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
@@ -23,7 +21,7 @@ public class PreRouteFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 1;
+        return 0;
     }
 
     @Override
@@ -36,12 +34,8 @@ public class PreRouteFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest request = ctx.getRequest();
-
-        ctx.setSendZuulResponse(false);
-        ctx.setResponseBody("拦截请求");
-        //后面的filter通过此判断是否继续执行
-        ctx.set("isSuccess",false);
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJpZFwiOjIsXCJ1c2VyTmFtZVwiOlwidGxoXCIsXCJwYXNzd29yZFwiOm51bGwsXCJhZ2VcIjpudWxsLFwicmVhbE5hbWVcIjpudWxsLFwiYWRkcmVzc1wiOm51bGx9IiwiaXNzIjoiYXV0aDAiLCJleHAiOjE1Mzg5MjA2ODF9.qzC2wzO5SsliTWxbOQH2iah57lR2oi5VHiAM12kawgA";
+        ctx.addZuulRequestHeader("Authorization", token);
         return null;
     }
 }
