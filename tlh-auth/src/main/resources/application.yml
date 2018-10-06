@@ -1,0 +1,35 @@
+server:
+  port: 8092
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+  instance:
+    appname: tlh-auth
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 5
+    status-page-url: http://localhost:${server.port}/swagger-ui.html
+spring:
+  application:
+    name: tlh-auth
+  datasource:
+    driver-class-name: org.gjt.mm.mysql.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql:///tlh_auth
+    type: org.springframework.jdbc.datasource.DriverManagerDataSource
+  jpa:
+    hibernate:
+      ddl-auto: update
+  messages:
+    basename:
+swagger:
+  enabled: true
+  title: 认证中心
+  apply-default-response-messages: false
+  global-response-message:
+    head[0]:
+      code: 200
+
