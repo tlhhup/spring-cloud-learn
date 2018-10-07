@@ -11,6 +11,9 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 5
     status-page-url: http://localhost:${server.port}/swagger-ui.html
+    metadata-map:
+      user.name: tlh
+      user.password: 123456
 spring:
   application:
     name: tlh-auth
@@ -25,6 +28,13 @@ spring:
       ddl-auto: update
   messages:
     basename: error
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: tlh-config-db
+      profile: dev
+      label: master
 swagger:
   enabled: true
   title: 认证中心
@@ -32,4 +42,12 @@ swagger:
   global-response-message:
     head[0]:
       code: 200
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 

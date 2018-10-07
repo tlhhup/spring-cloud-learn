@@ -186,3 +186,57 @@
 		1. 采用的是本地的rabbitmq，所以才用默认配置即可 
 		2. 在sever端出发bus-refresh之后，会通过消息总线将事件发送出去，从而调用client的refresh来达到配置的自动刷新
 		3. bus-refresh可以使得加了RefreshScope注解和ConfigurationProperties注解的数据从新加载
+3. 加载配置中心的数据在client端通过对象来接收(通过**ConfigurationProperties**实现)
+	1. 定义client端对象封装配置中数据
+	
+			@Data
+			@RefreshScope
+			@ConfigurationProperties(prefix = NestingProperty.SCC_PREFIX)
+			public class NestingProperty {
+			
+			    public static final String SCC_PREFIX="scc.config.client";
+			
+			    private String secret;
+			
+			    private Long expire;
+			
+			    private RateLimit rateLimit;
+			
+			    private Map<String,Item> docket;
+			
+			    @Data
+			    static class RateLimit{
+			        private Long rate;
+			        private Long remaining;
+			
+			        List<Item> items;
+			    }
+			
+			    @Data
+			    static class Item{
+			        private String name;
+			    }
+	
+			}
+	2. 启用自动配置属性  
+
+			@EnableEurekaClient
+			@SpringBootApplication
+			@EnableConfigurationProperties(value = {NestingProperty.class})
+			public class SccConfigClientApplication {
+			
+			    public static void main(String[] args) {
+			        SpringApplication.run(SccConfigClientApplication.class,args);
+			    }
+			
+			}
+	3. 配置中心返回的原始数据(config-server使用db模式)
+
+			name=hello-world-100
+			scc.config.client.rate-limit.remaining=100
+			scc.config.client.rate-limit.rate=1000
+			scc.config.client.docket.first.name=lisi    #map类型数据
+			scc.config.client.rate-limit.items[0].name=zhansan  #list类型数据
+			scc.config.client.secret=12345
+			scc.config.client.expire=24
+
