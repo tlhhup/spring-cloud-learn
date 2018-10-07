@@ -93,3 +93,25 @@
 				public interface StoreClient {
 				    //..
 				}
+6. 获取导致fallback的原因
+	1. 实现FallbackFactory接口
+	
+			@Component
+			static class HystrixClientFallbackFactory implements FallbackFactory<HystrixClient> {
+				@Override
+				public HystrixClient create(Throwable cause) {
+					return new HystrixClient() {
+						@Override
+						public Hello iFailSometimes() {
+							return new Hello("fallback; reason was: " + cause.getMessage());
+						}
+					};
+				}
+			}
+	2. 在feignclient中通过fallbackFactory属性引用 
+
+			@FeignClient(name = "hello", fallbackFactory = HystrixClientFallbackFactory.class)
+			protected interface HystrixClient {
+				@RequestMapping(method = RequestMethod.GET, value = "/hello")
+				Hello iFailSometimes();
+			}	

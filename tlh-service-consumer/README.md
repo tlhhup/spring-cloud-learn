@@ -216,3 +216,16 @@
 				        registry.addInterceptor(new HystrixContextInitInterceptor());
 				    }
 				}  	
+6. 异常处理(获取导致服务降级的原因)
+	1. 在fallbackmethod的方法参数中添加Throwable异常参数
+
+			@PostMapping("/register")
+		    @HystrixCommand(fallbackMethod = "registerFail")
+		    public String register(){
+		        return this.restTemplate.postForEntity("http://user-service/UserController/add",null,String.class).getBody();
+		    }
+		
+		    //获取异常信息
+		    public String registerFail(Throwable throwable){
+		        return throwable.getMessage();
+		    } 

@@ -32,8 +32,8 @@ public class UserAuthController {
         return this.restTemplate.postForEntity("http://user-service/UserController/add",null,String.class).getBody();
     }
 
-    public String registerFail(){
-        return "fail";
+    public String registerFail(Throwable throwable){
+        return throwable.getMessage();
     }
 
     @DeleteMapping("/delete/{id}")
