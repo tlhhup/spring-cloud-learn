@@ -240,3 +240,13 @@
 			scc.config.client.secret=12345
 			scc.config.client.expire=24
 
+	4. 注意：只能结合EnableConfigurationProperties或者单独定义一个bean来完成属性的自动配置
+		1. EnableConfigurationProperties(方便)
+
+				@EnableConfigurationProperties(value = {NestingProperty.class})
+		2. 定义bean 
+
+				@Bean
+			    public NestingProperty nestingProperty(){//2.使用定义bean的方式
+			        return new NestingProperty();
+			    }

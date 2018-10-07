@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d213ba8e-2668-43b3-afe3-7a3c0da36edc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/config/properties/NestingProperty.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/controller/NestingPropertyController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-auth/pom.xml" afterPath="$PROJECT_DIR$/tlh-auth/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-auth/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/tlh-auth/src/main/resources/application.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-auth/tlh-auth.iml" afterPath="$PROJECT_DIR$/tlh-auth/tlh-auth.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-config-server/README.md" afterPath="$PROJECT_DIR$/tlh-config-server/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/SccConfigClientApplication.java" afterPath="$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/SccConfigClientApplication.java" />
     </list>
@@ -57,17 +52,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SccConfigClientApplication.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SccConfigClientApplication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/SccConfigClientApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+            <state relative-caret-position="289">
+              <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NestingProperty.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NestingProperty.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/config/properties/NestingProperty.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="74">
@@ -151,8 +146,8 @@
         <option value="$PROJECT_DIR$/tlh-auth/pom.xml" />
         <option value="$PROJECT_DIR$/tlh-auth/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/controller/NestingPropertyController.java" />
-        <option value="$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/SccConfigClientApplication.java" />
         <option value="$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/config/properties/NestingProperty.java" />
+        <option value="$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/SccConfigClientApplication.java" />
       </list>
     </option>
   </component>
@@ -664,7 +659,7 @@
       <workItem from="1538798540137" duration="8693000" />
       <workItem from="1538807399780" duration="13082000" />
       <workItem from="1538882958578" duration="7506000" />
-      <workItem from="1538912061041" duration="4887000" />
+      <workItem from="1538912061041" duration="5239000" />
     </task>
     <task id="LOCAL-00001" summary="1.添加异步自定义线程池&#10;2.自动生成服务器端口号">
       <created>1538402778190</created>
@@ -792,7 +787,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538888072982</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="1.结合ConfigurationProperties注解实现config-client端拉取config-server的数据封装成对象">
+      <created>1538917087434</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1538917087434</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -807,7 +809,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155447000" />
+    <option name="totallyTimeSpent" value="155799000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -931,7 +933,8 @@
     <MESSAGE value="1.服务提供方通过认证中心对请求进行认证" />
     <MESSAGE value="1.服务消费端通过定义resttemplate拦截器来添加Authorization到请求头&#10;2.服务消费端通过定义feign拦截器来添加Authorization到请求头&#10;3.zuul添加请求到将Authorization传递到后端服务" />
     <MESSAGE value="1.resttemplate服务降级中获取异常信息&#10;2.feign获取服务降级异常信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.resttemplate服务降级中获取异常信息&#10;2.feign获取服务降级异常信息" />
+    <MESSAGE value="1.结合ConfigurationProperties注解实现config-client端拉取config-server的数据封装成对象" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.结合ConfigurationProperties注解实现config-client端拉取config-server的数据封装成对象" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1352,14 +1355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/SccConfigClientApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/config/properties/NestingProperty.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="74">
@@ -1367,6 +1362,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-scc-config-client/src/main/java/org/tlh/springcloud/SccConfigClientApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
