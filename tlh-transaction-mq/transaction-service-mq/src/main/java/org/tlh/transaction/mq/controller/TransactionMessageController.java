@@ -1,8 +1,9 @@
 package org.tlh.transaction.mq.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.tlh.transaction.mq.dto.SendMessageRepDto;
+import org.tlh.transaction.mq.dto.SendMessageReqDto;
 import org.tlh.transaction.mq.service.TransactionMessagesService;
 
 /**
@@ -16,5 +17,16 @@ public class TransactionMessageController {
 
     @Autowired
     private TransactionMessagesService transactionMessagesService;
+
+    @PostMapping("/sendMessage")
+    public SendMessageRepDto sendMessage(@RequestBody SendMessageReqDto sendMessageReqDto){
+        return this.transactionMessagesService.saveMessage(sendMessageReqDto);
+    }
+
+    @PostMapping("/conformSend/{messageId}")
+    public SendMessageRepDto conformSendMessages(@PathVariable("messageId") Long messageId){
+        return this.transactionMessagesService.conformSendMessage(messageId);
+    }
+
 
 }

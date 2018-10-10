@@ -1,20 +1,28 @@
 package org.tlh.transaction.mq.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.tlh.transaction.mq.repositories.TransactionMessagesRepository;
+import org.tlh.transaction.mq.dto.SendMessageRepDto;
+import org.tlh.transaction.mq.dto.SendMessageReqDto;
 
 /**
  * @author huping
  * @desc
  * @date 18/10/10
  */
-@Service
-@Transactional
-public class TransactionMessagesService {
+public interface TransactionMessagesService {
 
-    @Autowired
-    private TransactionMessagesRepository transactionMessagesRepository;
+    /**
+     * 事务发起方，存储预发送消息
+     * @param sendMessageReqDto
+     * @return
+     */
+    SendMessageRepDto saveMessage(SendMessageReqDto sendMessageReqDto);
+
+    /**
+     * 事务发起方，确认发送消息
+     * @param messageId
+     * @return
+     */
+    SendMessageRepDto conformSendMessage(Long messageId);
+
 
 }
