@@ -1,0 +1,24 @@
+server:
+  port: 8092
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    type: org.springframework.jdbc.datasource.DriverManagerDataSource
+    url: jdbc:mysql:///transaction_mq
+    password: 123456
+    username: root
+    driver-class-name: org.gjt.mm.mysql.Driver
+  application:
+    name: tlh-transaction-service-mq
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+  instance:
+    appname: tlh-transaction-service-mq
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5

@@ -19,6 +19,11 @@
       <module fileurl="file://$PROJECT_DIR$/tlh-service-consumer/tlh-service-consumer.iml" filepath="$PROJECT_DIR$/tlh-service-consumer/tlh-service-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-service-provider/tlh-service-provider.iml" filepath="$PROJECT_DIR$/tlh-service-provider/tlh-service-provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-spring-boot-admin/tlh-spring-boot-admin.iml" filepath="$PROJECT_DIR$/tlh-spring-boot-admin/tlh-spring-boot-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/tlh-transaction-mq.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/tlh-transaction-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/transaction-client-mq.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/transaction-client-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-commons-mq/transaction-commons-mq.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-commons-mq/transaction-commons-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/transaction-service-mq.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/transaction-service-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-task-mq/transaction-task-mq.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-task-mq/transaction-task-mq.iml" />
     </modules>
   </component>
 </project>

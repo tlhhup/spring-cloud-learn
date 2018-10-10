@@ -24,6 +24,7 @@
         <module>tlh-scc-config-client</module>
         <module>tlh-spring-boot-admin</module>
         <module>tlh-auth</module>
+        <module>tlh-transaction-mq</module>
     </modules>
     <packaging>pom</packaging>
 

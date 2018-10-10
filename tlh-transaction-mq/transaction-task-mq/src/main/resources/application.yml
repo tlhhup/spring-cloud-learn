@@ -1,0 +1,21 @@
+server:
+  port: 8094
+spring:
+  application:
+    name: tlh-transaction-task-mq
+  rabbitmq:
+    host: localhost
+    port: 6572
+    username: guest
+    password: guest
+    virtual-host: transaction-mq
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+  instance:
+    appname: tlh-transaction-service-mq
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5

@@ -22,6 +22,10 @@
         <module name="tlh-service-consumer" />
         <module name="tlh-service-provider" />
         <module name="tlh-spring-boot-admin" />
+        <module name="transaction-client-mq" />
+        <module name="transaction-commons-mq" />
+        <module name="transaction-service-mq" />
+        <module name="transaction-task-mq" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -42,6 +46,11 @@
       <module name="tlh-service-consumer" target="1.8" />
       <module name="tlh-service-provider" target="1.8" />
       <module name="tlh-spring-boot-admin" target="1.8" />
+      <module name="tlh-transaction-mq" target="1.8" />
+      <module name="transaction-client-mq" target="1.8" />
+      <module name="transaction-commons-mq" target="1.8" />
+      <module name="transaction-service-mq" target="1.8" />
+      <module name="transaction-task-mq" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
