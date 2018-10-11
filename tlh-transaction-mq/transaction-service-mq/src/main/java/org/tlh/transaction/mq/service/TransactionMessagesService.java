@@ -46,7 +46,7 @@ public interface TransactionMessagesService {
     MessageRepDto confirmMessageDied(Long messageId);
 
     /**
-     * 任务调度：增加消息重试次数:
+     * 任务调度：增加消息重试次数
      * @param messageId
      * @param sendDate
      * @return
