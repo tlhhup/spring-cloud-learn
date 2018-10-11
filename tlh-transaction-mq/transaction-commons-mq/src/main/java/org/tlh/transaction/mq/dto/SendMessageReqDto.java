@@ -3,7 +3,10 @@ package org.tlh.transaction.mq.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author huping
@@ -13,15 +16,23 @@ import java.io.Serializable;
 @Data
 public class SendMessageReqDto implements Serializable {
 
+    @NotEmpty
     private String content;
 
-    @JsonProperty("routing_ke")
+    @NotEmpty
+    @JsonProperty("routing_key")
     private String routingKey;
 
+    @NotEmpty
     @JsonProperty("send_system")
     private String sendSystem;
 
+    @NotEmpty
     @JsonProperty("retry_count")
     private int retryCount;
+
+    @NotNull
+    @JsonProperty("create_time")
+    private Date createTime;
 
 }

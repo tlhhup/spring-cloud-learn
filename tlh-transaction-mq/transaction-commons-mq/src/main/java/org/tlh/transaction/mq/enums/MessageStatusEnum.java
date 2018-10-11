@@ -1,5 +1,8 @@
 package org.tlh.transaction.mq.enums;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 /**
  * @author huping
  * @desc
@@ -15,7 +18,7 @@ public enum MessageStatusEnum {
     /**
      * 已经消费
      */
-    CONSUMPTIONED(1, "consumptioned"),
+    CONSUMED(1, "consumed"),
 
     /**
      * 死亡
@@ -42,5 +45,10 @@ public enum MessageStatusEnum {
 
     public String getValue() {
         return value;
+    }
+
+    public static MessageStatusEnum getMessageStatusByCode(int code){
+        Optional<MessageStatusEnum> messageStatusEnum = Arrays.stream(values()).filter(statusEnum -> statusEnum.code == code).findFirst();
+        return messageStatusEnum.orElse(WAIT_CONSUMPTION);
     }
 }

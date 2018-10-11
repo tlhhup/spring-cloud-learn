@@ -2,10 +2,7 @@ package org.tlh.transaction.mq.entity;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,8 +12,9 @@ import java.util.Date;
  * @date 18/10/10
  */
 @Data
+@Entity
 @Table(name = "transaction_messages")
-public class TransactionMessages implements Serializable {
+public class TransactionMessage implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +29,8 @@ public class TransactionMessages implements Serializable {
 
     private int dieCount;//死亡次数条件，由主动方觉得，超过后消息变为死亡状态，需人工干预来重新投递
 
+    private Date createTime;//创建时间
+
     /************* task ***************/
     private Integer reSendCount;//重复发送次数
 
@@ -38,12 +38,8 @@ public class TransactionMessages implements Serializable {
 
     private Date dieDate;//死亡时间
 
-    //init task
+    // init
     private int status;//消息状态
-
-    //init
-    private Date createTime;//创建时间
-
 
     /********** 被动方更新 ****************/
     private Date consumptionDate;//消费时间

@@ -1,7 +1,10 @@
 package org.tlh.transaction.mq.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.tracing.dtrace.ArgsAttributes;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -11,7 +14,9 @@ import java.io.Serializable;
  * @date 18/10/10
  */
 @Data
-public class SendMessageRepDto implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+public class MessageRepDto implements Serializable {
 
     private Boolean success;
 
