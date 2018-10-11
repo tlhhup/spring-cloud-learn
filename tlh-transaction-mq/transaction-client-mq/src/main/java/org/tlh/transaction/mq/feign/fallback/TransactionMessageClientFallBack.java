@@ -27,12 +27,12 @@ public class TransactionMessageClientFallBack implements TransactionMessageClien
     }
 
     @Override
-    public MessageRepDto confirmMessageConsumed(Long messageId, String consumeSystem) {
+    public MessageRepDto confirmMessageConsumed(Long messageId, String consumeSystem,Date consumeDate) {
         return new MessageRepDto(false,0l);
     }
 
     @Override
-    public MessageRepDto confirmMessageDied(Long messageId) {
+    public MessageRepDto confirmMessageDied(Long messageId,Date diedDate) {
         return new MessageRepDto(false,0l);
     }
 

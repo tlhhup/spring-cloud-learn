@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d213ba8e-2668-43b3-afe3-7a3c0da36edc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/config/WebMvcConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-transaction-mq/transaction-commons-mq/src/main/java/org/tlh/transaction/mq/dto/SendMessageReqDto.java" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-commons-mq/src/main/java/org/tlh/transaction/mq/dto/SendMessageReqDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/controller/TransactionMessageController.java" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/controller/TransactionMessageController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/entity/TransactionMessage.java" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/entity/TransactionMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/service/TransactionMessagesService.java" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/service/TransactionMessagesService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/service/impl/TransactionMessagesServiceImpl.java" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/service/impl/TransactionMessagesServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/resources/application.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/test/java/org/tlh/transaction/mq/service/TransactionMessagesServiceTest.java" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/test/java/org/tlh/transaction/mq/service/TransactionMessagesServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/TransactionMessageClient.java" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/TransactionMessageClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/fallback/TransactionMessageClientFallBack.java" afterPath="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/fallback/TransactionMessageClientFallBack.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -50,14 +44,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TransactionMessageController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/controller/TransactionMessageController.java">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-356">
-              <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="323">
+              <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -132,9 +124,7 @@
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/entity/TransactionMessages.java" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/pom.xml" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/service/TransactionMessagesService.java" />
-        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/TransactionMessageClient.java" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/pom.xml" />
-        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/fallback/TransactionMessageClientFallBack.java" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/entity/TransactionMessage.java" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/service/impl/TransactionMessagesServiceImpl.java" />
@@ -142,6 +132,8 @@
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/test/java/org/tlh/transaction/mq/service/TransactionMessagesServiceTest.java" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/config/WebMvcConfig.java" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-commons-mq/src/main/java/org/tlh/transaction/mq/dto/SendMessageReqDto.java" />
+        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/TransactionMessageClient.java" />
+        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/fallback/TransactionMessageClientFallBack.java" />
       </list>
     </option>
   </component>
@@ -247,71 +239,20 @@
               <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
               <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-commons-mq" type="462c0819:PsiDirectoryNode" />
+              <item name="transaction-client-mq" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
               <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-commons-mq" type="462c0819:PsiDirectoryNode" />
+              <item name="transaction-client-mq" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
               <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-commons-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-commons-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-commons-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mq" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-commons-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mq" type="462c0819:PsiDirectoryNode" />
-              <item name="dto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-service-mq" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-service-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-service-mq" type="462c0819:PsiDirectoryNode" />
+              <item name="transaction-client-mq" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -319,7 +260,7 @@
               <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
               <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-service-mq" type="462c0819:PsiDirectoryNode" />
+              <item name="transaction-client-mq" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -328,31 +269,11 @@
               <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
               <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-service-mq" type="462c0819:PsiDirectoryNode" />
+              <item name="transaction-client-mq" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mq" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-service-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mq" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-transaction-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="transaction-service-mq" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="feign" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -778,7 +699,7 @@
       <workItem from="1538882958578" duration="7506000" />
       <workItem from="1538912061041" duration="5239000" />
       <workItem from="1539175810273" duration="7945000" />
-      <workItem from="1539260353884" duration="12923000" />
+      <workItem from="1539260353884" duration="13188000" />
     </task>
     <task id="LOCAL-00001" summary="1.添加异步自定义线程池&#10;2.自动生成服务器端口号">
       <created>1538402778190</created>
@@ -955,7 +876,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539270021946</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="1.可靠消息服务端添加时间转换器&#10;2.修改消息服务端controller的部分参数">
+      <created>1539273704838</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1539273704838</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -991,7 +919,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177733000" />
+    <option name="totallyTimeSpent" value="177998000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1018,7 +946,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299712" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31988472" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23032904" sideWeight="0.4755784" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23032904" sideWeight="0.4755784" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299712" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1122,7 +1050,8 @@
     <MESSAGE value="1.完成存储预发送的消息&#10;2.完成确认并发送消息" />
     <MESSAGE value="1.完成可靠消息服务端逻辑处理&#10;2.添加单元测试&#10;3.添加工具类" />
     <MESSAGE value="1.完成可靠消息客户端feign的实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.完成可靠消息客户端feign的实现" />
+    <MESSAGE value="1.可靠消息服务端添加时间转换器&#10;2.修改消息服务端controller的部分参数" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.可靠消息服务端添加时间转换器&#10;2.修改消息服务端controller的部分参数" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1371,48 +1300,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="42" lean-forward="false" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/fallback/TransactionMessageClientFallBack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="55" column="36" lean-forward="false" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#583#584#0" expanded="true" />
-            <element signature="e#633#634#0" expanded="true" />
-            <element signature="e#711#712#0" expanded="true" />
-            <element signature="e#761#762#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1041#1042#0" expanded="true" />
-            <element signature="e#1130#1131#0" expanded="true" />
-            <element signature="e#1180#1181#0" expanded="true" />
-            <element signature="e#1243#1244#0" expanded="true" />
-            <element signature="e#1293#1294#0" expanded="true" />
-            <element signature="e#1390#1391#0" expanded="true" />
-            <element signature="e#1433#1434#0" expanded="true" />
-            <element signature="e#1535#1536#0" expanded="true" />
-            <element signature="e#1578#1579#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/TransactionMessageClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-696">
-          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1561,13 +1448,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/controller/TransactionMessageController.java">
+    <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/fallback/TransactionMessageClientFallBack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-356">
-          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        <state relative-caret-position="334">
+          <caret line="34" column="72" lean-forward="false" selection-start-line="34" selection-start-column="72" selection-end-line="34" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1566#1567#0" expanded="true" />
+            <element signature="e#1609#1610#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/TransactionMessageClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="51" column="23" lean-forward="true" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/controller/TransactionMessageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="52" column="65" lean-forward="false" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

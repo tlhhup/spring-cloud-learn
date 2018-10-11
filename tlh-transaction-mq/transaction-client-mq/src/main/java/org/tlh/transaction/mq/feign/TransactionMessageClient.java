@@ -38,19 +38,23 @@ public interface TransactionMessageClient {
      * 事务被动方：确认消息被消费
      * @param messageId
      * @param consumeSystem
+     * @param consumeDate
      * @return
      */
     @PostMapping("/confirmMessageConsume/{messageId}")
     MessageRepDto confirmMessageConsumed(@PathVariable("messageId")Long messageId,
-                                         @RequestParam("consumeSystem") String consumeSystem);
+                                         @RequestParam("consume_system") String consumeSystem,
+                                         @RequestParam("consume_date")Date consumeDate);
 
     /**
      * 任务调度：确认消息死亡
      * @param messageId
+     * @param diedDate
      * @return
      */
     @PostMapping("/confirmMessageDied/{messageId}")
-    MessageRepDto confirmMessageDied(@PathVariable("messageId") Long messageId);
+    MessageRepDto confirmMessageDied(@PathVariable("messageId") Long messageId,
+                                     @RequestParam("died_date")Date diedDate);
 
     /**
      * 任务调度：增加消息重试次数
@@ -60,7 +64,7 @@ public interface TransactionMessageClient {
      */
     @PostMapping("/incMessageRetry/{messageId}")
     MessageRepDto incMessageRetry(@PathVariable("messageId") Long messageId,
-                                  @RequestParam("sendDate")Date sendDate);
+                                  @RequestParam("send_date")Date sendDate);
 
     /**
      * 任务调度：重新发送死亡的消息
