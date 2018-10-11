@@ -44,12 +44,12 @@ public class TransactionMessagesServiceTest {
 
     @Test
     public void confirmMessageDied() throws Exception {
-        this.transactionMessagesService.confirmMessageDied(1l);
+        this.transactionMessagesService.confirmMessageDied(1l, new Date());
     }
 
     @Test
     public void incrementMessageRetry() throws Exception {
-
+        this.transactionMessagesService.incrementMessageRetry(1l,new Date());
     }
 
     @Test

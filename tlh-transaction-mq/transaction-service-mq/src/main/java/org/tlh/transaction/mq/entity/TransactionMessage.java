@@ -32,7 +32,7 @@ public class TransactionMessage implements Serializable {
     private Date createTime;//创建时间
 
     /************* task ***************/
-    private Integer reSendCount;//重复发送次数
+    private int reSendCount;//重复发送次数
 
     private Date sendTime;//最新发送时间
 

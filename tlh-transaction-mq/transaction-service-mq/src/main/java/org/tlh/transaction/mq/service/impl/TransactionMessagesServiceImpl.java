@@ -67,28 +67,31 @@ public class TransactionMessagesServiceImpl implements TransactionMessagesServic
         return result;
     }
 
+    @Transactional
     @Override
-    public MessageRepDto confirmMessageConsumed(Long messageId, String consumeSystem) {
+    public MessageRepDto confirmMessageConsumed(Long messageId, String consumeSystem, Date consumeDate) {
         Optional<TransactionMessage> messages = this.transactionMessagesRepository.findById(messageId);
         messages.ifPresent(transactionMessage -> {
             transactionMessage.setConsumptionSystem(consumeSystem);
-            transactionMessage.setConsumptionDate(new Date());
+            transactionMessage.setConsumptionDate(consumeDate);
             transactionMessage.setStatus(MessageStatusEnum.CONSUMED.getCode());
         });
         return new MessageRepDto(messages.isPresent(),messageId);
     }
 
+    @Transactional
     @Override
-    public MessageRepDto confirmMessageDied(Long messageId) {
+    public MessageRepDto confirmMessageDied(Long messageId, Date diedDate) {
         Optional<TransactionMessage> messages = this.transactionMessagesRepository.findById(messageId);
         //有值则执行，无者do nothing
         messages.ifPresent(transactionMessage -> {
-            transactionMessage.setDieDate(new Date());
+            transactionMessage.setDieDate(diedDate);
             transactionMessage.setStatus(MessageStatusEnum.DIE.getCode());
         });
         return new MessageRepDto(messages.isPresent(),messageId);
     }
 
+    @Transactional
     @Override
     public MessageRepDto incrementMessageRetry(Long messageId,Date sendDate) {
         Optional<TransactionMessage> messages = this.transactionMessagesRepository.findById(messageId);
@@ -99,6 +102,7 @@ public class TransactionMessagesServiceImpl implements TransactionMessagesServic
         return new MessageRepDto(messages.isPresent(),messageId);
     }
 
+    @Transactional
     @Override
     public MessageRepDto reSendDiedMessages() {
         return new MessageRepDto(this.transactionMessagesRepository.cleanDiedMessageStatus().orElse(0)>0,null);

@@ -27,9 +27,9 @@ public class SendMessageReqDto implements Serializable {
     @JsonProperty("send_system")
     private String sendSystem;
 
-    @NotEmpty
+    @NotNull
     @JsonProperty("retry_count")
-    private int retryCount;
+    private Integer retryCount;
 
     @NotNull
     @JsonProperty("create_time")

@@ -37,18 +37,20 @@ public class TransactionMessageController {
 
     @PostMapping("/confirmMessageConsume/{messageId}")
     public MessageRepDto confirmMessageConsumed(@PathVariable("messageId")Long messageId,
-                                                @RequestParam("consumeSystem") String consumeSystem){
-        return this.transactionMessagesService.confirmMessageConsumed(messageId,consumeSystem);
+                                                @RequestParam("consume_system") String consumeSystem,
+                                                @RequestParam("consume_date")Date consumeDate){
+        return this.transactionMessagesService.confirmMessageConsumed(messageId,consumeSystem,consumeDate);
     }
 
     @PostMapping("/confirmMessageDied/{messageId}")
-    public MessageRepDto confirmMessageDied(@PathVariable("messageId") Long messageId){
-        return this.transactionMessagesService.confirmMessageDied(messageId);
+    public MessageRepDto confirmMessageDied(@PathVariable("messageId") Long messageId,
+                                            @RequestParam("died_date")Date diedDate){
+        return this.transactionMessagesService.confirmMessageDied(messageId,diedDate);
     }
 
     @PostMapping("/incMessageRetry/{messageId}")
     public MessageRepDto incMessageRetry(@PathVariable("messageId") Long messageId,
-                                         @RequestParam("sendDate")Date sendDate){
+                                         @RequestParam("send_date")Date sendDate){
         return this.transactionMessagesService.incrementMessageRetry(messageId,sendDate);
     }
 

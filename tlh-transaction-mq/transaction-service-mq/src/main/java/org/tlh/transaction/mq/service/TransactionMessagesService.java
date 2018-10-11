@@ -34,16 +34,18 @@ public interface TransactionMessagesService {
      * 事务被动方：确认消息被消费
      * @param messageId
      * @param consumeSystem
+     * @param consumeDate
      * @return
      */
-    MessageRepDto confirmMessageConsumed(Long messageId,String consumeSystem);
+    MessageRepDto confirmMessageConsumed(Long messageId, String consumeSystem, Date consumeDate);
 
     /**
      * 任务调度：确认消息死亡
      * @param messageId
+     * @param diedDate
      * @return
      */
-    MessageRepDto confirmMessageDied(Long messageId);
+    MessageRepDto confirmMessageDied(Long messageId, Date diedDate);
 
     /**
      * 任务调度：增加消息重试次数
