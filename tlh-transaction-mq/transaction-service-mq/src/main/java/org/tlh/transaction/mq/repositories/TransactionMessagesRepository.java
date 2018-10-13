@@ -1,5 +1,6 @@
 package org.tlh.transaction.mq.repositories;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.tlh.transaction.mq.entity.TransactionMessage;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -24,7 +24,7 @@ public interface TransactionMessagesRepository extends JpaRepository<Transaction
     @Query("update TransactionMessage set status=?2 where id=?1")
     Integer updateMessageStatus(Long messageId, int status);
 
-    List<TransactionMessage> findTransactionMessagesByStatus(int status, Pageable pageable);
+    Page<TransactionMessage> findTransactionMessagesByStatus(int status, Pageable pageable);
 
     @Modifying
     @Transactional

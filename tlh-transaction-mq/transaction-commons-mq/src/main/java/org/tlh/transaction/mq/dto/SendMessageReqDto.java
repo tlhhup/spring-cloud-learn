@@ -20,6 +20,9 @@ public class SendMessageReqDto implements Serializable {
     private String content;
 
     @NotEmpty
+    private String exchange;
+
+    @NotEmpty
     @JsonProperty("routing_key")
     private String routingKey;
 

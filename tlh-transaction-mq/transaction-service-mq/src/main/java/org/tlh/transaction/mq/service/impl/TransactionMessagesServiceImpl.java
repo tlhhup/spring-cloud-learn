@@ -1,10 +1,12 @@
 package org.tlh.transaction.mq.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.tlh.transaction.mq.dto.MessageRepDto;
+import org.tlh.transaction.mq.dto.PageInfo;
 import org.tlh.transaction.mq.dto.SendMessageReqDto;
 import org.tlh.transaction.mq.dto.TransactionMessageDto;
 import org.tlh.transaction.mq.entity.TransactionMessage;
@@ -38,6 +40,7 @@ public class TransactionMessagesServiceImpl implements TransactionMessagesServic
         TransactionMessage messages=new TransactionMessage();
         messages.setSendSystem(sendMessageReqDto.getSendSystem());
         messages.setDieCount(sendMessageReqDto.getRetryCount());
+        messages.setExchange(sendMessageReqDto.getExchange());
         messages.setRoutingKey(sendMessageReqDto.getRoutingKey());
         messages.setMessage(sendMessageReqDto.getContent());
         messages.setCreateTime(sendMessageReqDto.getCreateTime());
@@ -110,32 +113,43 @@ public class TransactionMessagesServiceImpl implements TransactionMessagesServic
 
     @Override
     public List<TransactionMessageDto> findWaitingMessages(Pageable pageable) {
-        return this.findMessagesByStatus(MessageStatusEnum.WAIT_CONSUMPTION,pageable);
+        return this.findMessagesByStatus(MessageStatusEnum.WAIT_CONSUMPTION,pageable).getData();
     }
 
     @Override
-    public List<TransactionMessageDto> findMessagesByStatus(MessageStatusEnum status, Pageable pageable) {
-        List<TransactionMessage> messages = this.transactionMessagesRepository.findTransactionMessagesByStatus(status.getCode(), pageable);
-        if(messages!=null){
-            return messages.parallelStream().map(message->{
-                TransactionMessageDto item=new TransactionMessageDto();
+    public PageInfo<TransactionMessageDto> findMessagesByStatus(MessageStatusEnum status, Pageable pageable) {
+        PageInfo<TransactionMessageDto> result=new PageInfo<>();
+        Page<TransactionMessage> page = this.transactionMessagesRepository.findTransactionMessagesByStatus(status.getCode(), pageable);
+        if(page!=null) {
+            result.setCurrentPage(page.getNumber());
+            result.setTotal(page.getTotalElements());
+            result.setTotalPage(page.getTotalPages());
 
-                item.setConsumptionDate(message.getConsumptionDate());
-                item.setConsumptionSystem(message.getConsumptionSystem());
-                item.setDieDate(message.getDieDate());
-                item.setId(message.getId());
-                item.setSendTime(message.getSendTime());
-                item.setStatus(message.getStatus());
-                item.setContent(message.getMessage());
-                item.setCreateTime(message.getCreateTime());
-                item.setRetryCount(message.getReSendCount());
-                item.setRoutingKey(message.getRoutingKey());
-                item.setSendSystem(message.getSendSystem());
+            List<TransactionMessage> messages =page.getContent();
+            if (messages != null) {
+                List<TransactionMessageDto> collect = messages.parallelStream().map(message -> {
+                    TransactionMessageDto item = new TransactionMessageDto();
 
-                return item;
-            }).collect(Collectors.toList());
+                    item.setConsumptionDate(message.getConsumptionDate());
+                    item.setConsumptionSystem(message.getConsumptionSystem());
+                    item.setDieDate(message.getDieDate());
+                    item.setDiedCount(message.getDieCount());
+                    item.setId(message.getId());
+                    item.setSendTime(message.getSendTime());
+                    item.setStatus(message.getStatus());
+                    item.setContent(message.getMessage());
+                    item.setCreateTime(message.getCreateTime());
+                    item.setRetryCount(message.getReSendCount());
+                    item.setExchange(message.getExchange());
+                    item.setRoutingKey(message.getRoutingKey());
+                    item.setSendSystem(message.getSendSystem());
+
+                    return item;
+                }).collect(Collectors.toList());
+                result.setData(collect);
+            }
         }
-        return null;
+        return result;
     }
 
 }

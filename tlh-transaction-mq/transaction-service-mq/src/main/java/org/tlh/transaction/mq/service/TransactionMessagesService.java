@@ -2,6 +2,7 @@ package org.tlh.transaction.mq.service;
 
 import org.springframework.data.domain.Pageable;
 import org.tlh.transaction.mq.dto.MessageRepDto;
+import org.tlh.transaction.mq.dto.PageInfo;
 import org.tlh.transaction.mq.dto.SendMessageReqDto;
 import org.tlh.transaction.mq.dto.TransactionMessageDto;
 import org.tlh.transaction.mq.enums.MessageStatusEnum;
@@ -74,6 +75,6 @@ public interface TransactionMessagesService {
      * @param pageable
      * @return
      */
-    List<TransactionMessageDto> findMessagesByStatus(MessageStatusEnum status,Pageable pageable);
+    PageInfo<TransactionMessageDto> findMessagesByStatus(MessageStatusEnum status,Pageable pageable);
 
 }

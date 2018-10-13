@@ -3,6 +3,7 @@ package org.tlh.transaction.mq.feign;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import org.tlh.transaction.mq.dto.MessageRepDto;
+import org.tlh.transaction.mq.dto.PageInfo;
 import org.tlh.transaction.mq.dto.SendMessageReqDto;
 import org.tlh.transaction.mq.dto.TransactionMessageDto;
 import org.tlh.transaction.mq.feign.fallback.TransactionMessageClientFallBack;
@@ -81,7 +82,7 @@ public interface TransactionMessageClient {
      */
     @GetMapping("/queryWaitingMessages")
     List<TransactionMessageDto> queryWaitingMessages(@RequestParam("page") int page,
-                                                     @RequestParam("size") int size);
+                                                         @RequestParam("size") int size);
 
     /**
      * 查询指定状态的message
@@ -91,7 +92,7 @@ public interface TransactionMessageClient {
      * @return
      */
     @GetMapping("/queryMessages/{status}")
-    List<TransactionMessageDto> queryMessages(@PathVariable("status")int status,
+    PageInfo<TransactionMessageDto> queryMessages(@PathVariable("status")int status,
                                               @RequestParam("page") int page,
                                               @RequestParam("size") int size);
 

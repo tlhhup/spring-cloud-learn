@@ -23,6 +23,8 @@ public class TransactionMessage implements Serializable {
     /*********** 主动方 ************/
     private String message;// 消息内容,json数据，业务数据
 
+    private String exchange;//交换器
+
     private String routingKey;//路由key
 
     private String sendSystem;//发送消息的系统，主动方

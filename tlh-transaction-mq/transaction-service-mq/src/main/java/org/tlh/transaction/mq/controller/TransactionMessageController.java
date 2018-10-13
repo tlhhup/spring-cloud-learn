@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.tlh.transaction.mq.dto.MessageRepDto;
+import org.tlh.transaction.mq.dto.PageInfo;
 import org.tlh.transaction.mq.dto.SendMessageReqDto;
 import org.tlh.transaction.mq.dto.TransactionMessageDto;
 import org.tlh.transaction.mq.enums.MessageStatusEnum;
@@ -65,7 +66,7 @@ public class TransactionMessageController {
     }
 
     @GetMapping("/queryMessages/{status}")
-    public List<TransactionMessageDto> queryMessages(@PathVariable("status")int status,Pageable pageable){
+    public PageInfo<TransactionMessageDto> queryMessages(@PathVariable("status")int status,Pageable pageable){
         return this.transactionMessagesService.findMessagesByStatus(MessageStatusEnum.getMessageStatusByCode(status),pageable);
     }
 

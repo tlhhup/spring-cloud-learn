@@ -28,7 +28,7 @@ public enum MessageStatusEnum {
     /**
      * 确认发送
      */
-    CONFORM_SEND(3,"conform_send");
+    CONFORM_SEND(3,"confirm_send");
 
     private int code;
     private String value;

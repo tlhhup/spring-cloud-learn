@@ -21,6 +21,9 @@ public class TransactionMessageDto extends SendMessageReqDto {
     @JsonProperty("died_date")
     private Date dieDate;
 
+    @JsonProperty("died_count")
+    private int diedCount;
+
     private int status;
 
     @JsonProperty("consumption_date")
@@ -29,4 +32,7 @@ public class TransactionMessageDto extends SendMessageReqDto {
     @JsonProperty("consumption_system")
     private String consumptionSystem;
 
+    public boolean isDied() {
+        return this.getRetryCount().compareTo(diedCount)>0;
+    }
 }

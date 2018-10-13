@@ -2,6 +2,7 @@ package org.tlh.transaction.mq.feign.fallback;
 
 import com.google.common.collect.Lists;
 import org.tlh.transaction.mq.dto.MessageRepDto;
+import org.tlh.transaction.mq.dto.PageInfo;
 import org.tlh.transaction.mq.dto.SendMessageReqDto;
 import org.tlh.transaction.mq.dto.TransactionMessageDto;
 import org.tlh.transaction.mq.feign.TransactionMessageClient;
@@ -52,7 +53,7 @@ public class TransactionMessageClientFallBack implements TransactionMessageClien
     }
 
     @Override
-    public List<TransactionMessageDto> queryMessages(int status, int page, int size) {
-        return Lists.newArrayList();
+    public PageInfo<TransactionMessageDto> queryMessages(int status, int page, int size) {
+        return new PageInfo<>();
     }
 }
