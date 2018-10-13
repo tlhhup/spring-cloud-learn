@@ -6,6 +6,7 @@ import org.tlh.transaction.mq.dto.MessageRepDto;
 import org.tlh.transaction.mq.dto.PageInfo;
 import org.tlh.transaction.mq.dto.SendMessageReqDto;
 import org.tlh.transaction.mq.dto.TransactionMessageDto;
+import org.tlh.transaction.mq.enums.MessageStatusEnum;
 import org.tlh.transaction.mq.feign.fallback.TransactionMessageClientFallBack;
 
 import java.util.Date;
@@ -29,7 +30,7 @@ public interface TransactionMessageClient {
 
     /**
      * 事务发起方，确认发送消息
-     * @param messageId
+     * @param messageId 消息ID
      * @return
      */
     @PostMapping("/confirmSend/{messageId}")
@@ -37,9 +38,9 @@ public interface TransactionMessageClient {
 
     /**
      * 事务被动方：确认消息被消费
-     * @param messageId
-     * @param consumeSystem
-     * @param consumeDate
+     * @param messageId     消息ID
+     * @param consumeSystem 被动方系统
+     * @param consumeDate   消费时间
      * @return
      */
     @PostMapping("/confirmMessageConsume/{messageId}")
@@ -49,8 +50,8 @@ public interface TransactionMessageClient {
 
     /**
      * 任务调度：确认消息死亡
-     * @param messageId
-     * @param diedDate
+     * @param messageId 消息ID
+     * @param diedDate  死亡时间
      * @return
      */
     @PostMapping("/confirmMessageDied/{messageId}")
@@ -59,8 +60,8 @@ public interface TransactionMessageClient {
 
     /**
      * 任务调度：增加消息重试次数
-     * @param messageId
-     * @param sendDate
+     * @param messageId 消息ID
+     * @param sendDate  发送时间
      * @return
      */
     @PostMapping("/incMessageRetry/{messageId}")
@@ -76,24 +77,25 @@ public interface TransactionMessageClient {
 
     /**
      * 查询等待发送的消息
-     * @param page
-     * @param size
+     * @param page 当前页，默认1
+     * @param size 每页条数，默认10
      * @return
      */
     @GetMapping("/queryWaitingMessages")
-    List<TransactionMessageDto> queryWaitingMessages(@RequestParam("page") int page,
-                                                         @RequestParam("size") int size);
+    List<TransactionMessageDto> queryWaitingMessages(@RequestParam(value = "page",defaultValue = "1") int page,
+                                                     @RequestParam(value = "size",defaultValue = "10") int size);
 
     /**
      * 查询指定状态的message
-     * @param status
-     * @param page
-     * @param size
+     * @param status  消息状态
+     * @see MessageStatusEnum
+     * @param page    当前页，默认1
+     * @param size    每页条数，默认10
      * @return
      */
     @GetMapping("/queryMessages/{status}")
     PageInfo<TransactionMessageDto> queryMessages(@PathVariable("status")int status,
-                                              @RequestParam("page") int page,
-                                              @RequestParam("size") int size);
+                                                  @RequestParam(value = "page",defaultValue = "1") int page,
+                                                  @RequestParam(value = "size",defaultValue = "10") int size);
 
 }
