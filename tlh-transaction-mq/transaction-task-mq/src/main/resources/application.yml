@@ -9,6 +9,11 @@ spring:
     username: guest
     password: guest
     virtual-host: transaction-mq
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+    timeout: 10000
 eureka:
   client:
     healthcheck:

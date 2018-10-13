@@ -23,3 +23,4 @@ spring-cloud组件学习和第三方开源项目集成
 ###第三方开源项目
 1. scca：https://github.com/dyc87112/spring-cloud-config-admin
 2. spring-boot-admin：https://github.com/codecentric/spring-boot-admin
+3. redission：https://github.com/redisson/redisson
