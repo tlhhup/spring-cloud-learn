@@ -88,7 +88,6 @@
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-netflix-ribbon:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-netflix-archaius:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: commons-configuration:commons-configuration:1.8" level="project" />
-    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-netflix-ribbon:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.netflix.ribbon:ribbon:2.2.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.netflix.ribbon:ribbon-transport:2.2.5" level="project" />
@@ -144,6 +143,7 @@
     <orderEntry type="library" name="Maven: org.latencyutils:LatencyUtils:2.0.3" level="project" />
     <orderEntry type="module" module-name="transaction-commons-mq" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.0.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:5.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.0.5.RELEASE" level="project" />

@@ -1,7 +1,6 @@
 package org.tlh.transaction.mq.jobs;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.time.DateUtils;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.amqp.AmqpException;
@@ -14,7 +13,6 @@ import org.tlh.transaction.mq.feign.TransactionMessageClient;
 import org.tlh.transaction.mq.utils.DateUtil;
 
 import javax.annotation.PostConstruct;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -68,10 +66,10 @@ public class ProcessMessagesTask {
     }
 
     private long processPreUnit() throws Exception{
-        log.info("process pre unit end");
+        log.info("process pre unit start");
         long sleepTime=10000;
         //每次取头上没有被消费的， TODO 此处合理否?
-        List<TransactionMessageDto> messages = this.transactionMessageClient.queryWaitingMessages(1, 5000);
+        List<TransactionMessageDto> messages = this.transactionMessageClient.queryWaitingMessages(0, 5000);
         if(messages!=null&&!messages.isEmpty()){
             if(messages.size()==5000){
                 sleepTime=0;
@@ -101,7 +99,7 @@ public class ProcessMessagesTask {
     private void pushMessage(TransactionMessageDto message){
         //1.判断消息是否达到死亡条件
         if(message.isDied()){
-            this.transactionMessageClient.confirmMessageDied(message.getId(), DateUtil.now());
+            this.transactionMessageClient.confirmMessageDied(message.getId(), DateUtil.formatDateTime(DateUtil.now()));
             return;
         }
         //2.发送消息
@@ -117,7 +115,7 @@ public class ProcessMessagesTask {
                 //3.将消息推送到消息队列
                 this.rabbitTemplate.convertAndSend(message.getExchange(),message.getRoutingKey(),message.getContent());
                 //4.增加发送次数
-                this.transactionMessageClient.incMessageRetry(message.getId(),DateUtil.now());
+                this.transactionMessageClient.incMessageRetry(message.getId(),DateUtil.formatDateTime(DateUtil.now()));
                 log.info("push message success");
             } catch (AmqpException e) {
                 log.info("push message error");
