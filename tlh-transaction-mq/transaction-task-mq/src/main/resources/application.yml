@@ -14,6 +14,8 @@ spring:
     port: 6379
     database: 1
     timeout: 10000
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss # 处理feign对date类型数据的格式化
 eureka:
   client:
     healthcheck:

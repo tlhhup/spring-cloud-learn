@@ -25,6 +25,7 @@
         <module name="transaction-client-mq" />
         <module name="transaction-commons-mq" />
         <module name="transaction-service-mq" />
+        <module name="transaction-subsitution" />
         <module name="transaction-task-mq" />
       </profile>
     </annotationProcessing>
@@ -49,7 +50,9 @@
       <module name="tlh-transaction-mq" target="1.8" />
       <module name="transaction-client-mq" target="1.8" />
       <module name="transaction-commons-mq" target="1.8" />
+      <module name="transaction-example" target="1.8" />
       <module name="transaction-service-mq" target="1.8" />
+      <module name="transaction-subsitution" target="1.8" />
       <module name="transaction-task-mq" target="1.8" />
     </bytecodeTargetLevel>
   </component>

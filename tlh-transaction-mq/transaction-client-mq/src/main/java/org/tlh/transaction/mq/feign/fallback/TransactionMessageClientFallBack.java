@@ -9,6 +9,7 @@ import org.tlh.transaction.mq.dto.SendMessageReqDto;
 import org.tlh.transaction.mq.dto.TransactionMessageDto;
 import org.tlh.transaction.mq.feign.TransactionMessageClient;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,19 +34,19 @@ public class TransactionMessageClientFallBack implements TransactionMessageClien
     }
 
     @Override
-    public MessageRepDto confirmMessageConsumed(Long messageId, String consumeSystem,String consumeDate) {
+    public MessageRepDto confirmMessageConsumed(Long messageId, String consumeSystem,Date consumeDate) {
         log.info("client confirmMessageConsumed fail");
         return new MessageRepDto(false,0l);
     }
 
     @Override
-    public MessageRepDto confirmMessageDied(Long messageId,String diedDate) {
+    public MessageRepDto confirmMessageDied(Long messageId,Date diedDate) {
         log.info("client confirmMessageDied fail");
         return new MessageRepDto(false,0l);
     }
 
     @Override
-    public MessageRepDto incMessageRetry(Long messageId, String sendDate) {
+    public MessageRepDto incMessageRetry(Long messageId, Date sendDate) {
         log.info("client incMessageRetry fail");
         return new MessageRepDto(false,0l);
     }

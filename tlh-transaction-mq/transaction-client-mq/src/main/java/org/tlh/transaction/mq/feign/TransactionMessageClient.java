@@ -9,6 +9,7 @@ import org.tlh.transaction.mq.dto.TransactionMessageDto;
 import org.tlh.transaction.mq.enums.MessageStatusEnum;
 import org.tlh.transaction.mq.feign.fallback.TransactionMessageClientFallBack;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,7 +46,7 @@ public interface TransactionMessageClient {
     @PostMapping("/confirmMessageConsume/{messageId}")
     MessageRepDto confirmMessageConsumed(@PathVariable("messageId")Long messageId,
                                          @RequestParam("consume_system") String consumeSystem,
-                                         @RequestParam("consume_date")String consumeDate);
+                                         @RequestParam("consume_date")Date consumeDate);
 
     /**
      * 任务调度：确认消息死亡
@@ -55,7 +56,7 @@ public interface TransactionMessageClient {
      */
     @PostMapping("/confirmMessageDied/{messageId}")
     MessageRepDto confirmMessageDied(@PathVariable("messageId") Long messageId,
-                                     @RequestParam("died_date")String diedDate);
+                                     @RequestParam("died_date")Date diedDate);
 
     /**
      * 任务调度：增加消息重试次数
@@ -65,7 +66,7 @@ public interface TransactionMessageClient {
      */
     @PostMapping("/incMessageRetry/{messageId}")
     MessageRepDto incMessageRetry(@PathVariable("messageId") Long messageId,
-                                  @RequestParam("send_date")String sendDate);
+                                  @RequestParam("send_date")Date sendDate);
 
     /**
      * 任务调度：重新发送死亡的消息

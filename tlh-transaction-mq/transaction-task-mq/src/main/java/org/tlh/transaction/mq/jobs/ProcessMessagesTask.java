@@ -99,7 +99,7 @@ public class ProcessMessagesTask {
     private void pushMessage(TransactionMessageDto message){
         //1.判断消息是否达到死亡条件
         if(message.isDied()){
-            this.transactionMessageClient.confirmMessageDied(message.getId(), DateUtil.formatDateTime(DateUtil.now()));
+            this.transactionMessageClient.confirmMessageDied(message.getId(), DateUtil.now());
             return;
         }
         //2.发送消息
@@ -115,7 +115,7 @@ public class ProcessMessagesTask {
                 //3.将消息推送到消息队列
                 this.rabbitTemplate.convertAndSend(message.getExchange(),message.getRoutingKey(),message.getContent());
                 //4.增加发送次数
-                this.transactionMessageClient.incMessageRetry(message.getId(),DateUtil.formatDateTime(DateUtil.now()));
+                this.transactionMessageClient.incMessageRetry(message.getId(), DateUtil.now());
                 log.info("push message success");
             } catch (AmqpException e) {
                 log.info("push message error");
