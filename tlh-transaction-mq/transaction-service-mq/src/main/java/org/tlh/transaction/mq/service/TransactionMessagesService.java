@@ -25,7 +25,7 @@ public interface TransactionMessagesService {
     MessageRepDto saveMessage(SendMessageReqDto sendMessageReqDto);
 
     /**
-     * 事务发起方，确认发送消息
+     * 事务发起方，确认发送消息,只有确认过的消息才能被投递到实时消息系统
      * @param messageId
      * @return
      */
@@ -57,7 +57,7 @@ public interface TransactionMessagesService {
     MessageRepDto incrementMessageRetry(Long messageId, Date sendDate);
 
     /**
-     * 任务调度：重新发送死亡的消息
+     * 人工干预：重新发送死亡的消息,将消息状态流转为确认状态 {@link MessageStatusEnum}
      * @return
      */
     MessageRepDto reSendDiedMessages();

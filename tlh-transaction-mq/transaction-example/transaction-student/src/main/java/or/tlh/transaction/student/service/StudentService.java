@@ -38,6 +38,8 @@ public class StudentService {
         MessageRepDto messageRepDto = this.transactionMessageClient.sendMessage(buildMessage(student,"student.create"));
         if(messageRepDto!=null&&messageRepDto.getSuccess()){
             success=true;
+            //3.确认消息发送成功,避免消息入库，但是feign失败
+            this.transactionMessageClient.confirmSendMessages(messageRepDto.getMessageId());
         }else{
             log.error("send create student error");
             //spring默认在出现runtime和error时会进行事务的回滚

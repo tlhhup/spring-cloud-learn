@@ -28,6 +28,6 @@ public interface TransactionMessagesRepository extends JpaRepository<Transaction
 
     @Modifying
     @Transactional
-    @Query("update TransactionMessage set status=0,reSendCount=0 where status=2")
+    @Query("update TransactionMessage set status=1,reSendCount=0 where status=2")
     Optional<Integer> cleanDiedMessageStatus();
 }

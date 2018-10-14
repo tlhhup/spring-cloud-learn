@@ -29,7 +29,7 @@ public interface TransactionMessageClient {
     MessageRepDto sendMessage(@RequestBody SendMessageReqDto sendMessageReqDto);
 
     /**
-     * 事务发起方，确认发送消息
+     * 事务发起方，确认发送消息,发送消息之后，通过返回的结果来确认消息已经发送成功
      * @param messageId 消息ID
      * @return
      */

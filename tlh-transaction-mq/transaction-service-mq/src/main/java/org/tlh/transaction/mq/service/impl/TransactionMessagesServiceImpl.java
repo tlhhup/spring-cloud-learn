@@ -44,7 +44,7 @@ public class TransactionMessagesServiceImpl implements TransactionMessagesServic
         messages.setRoutingKey(sendMessageReqDto.getRoutingKey());
         messages.setMessage(sendMessageReqDto.getContent());
         messages.setCreateTime(sendMessageReqDto.getCreateTime());
-        messages.setStatus(MessageStatusEnum.WAIT_CONSUMPTION.getCode());
+        messages.setStatus(MessageStatusEnum.WAIT_CONFIRM.getCode());
 
         try {
             this.transactionMessagesRepository.save(messages);
@@ -61,7 +61,7 @@ public class TransactionMessagesServiceImpl implements TransactionMessagesServic
     public MessageRepDto confirmSendMessage(Long messageId) {
         MessageRepDto result=new MessageRepDto();
         result.setMessageId(messageId);
-        Integer count = this.transactionMessagesRepository.updateMessageStatus(messageId, MessageStatusEnum.CONFORM_SEND.getCode());
+        Integer count = this.transactionMessagesRepository.updateMessageStatus(messageId, MessageStatusEnum.CONFIRM_SEND.getCode());
         if(count!=null&&count>0){
             result.setSuccess(true);
         }else{
@@ -113,7 +113,8 @@ public class TransactionMessagesServiceImpl implements TransactionMessagesServic
 
     @Override
     public List<TransactionMessageDto> findWaitingMessages(Pageable pageable) {
-        return this.findMessagesByStatus(MessageStatusEnum.WAIT_CONSUMPTION,pageable).getData();
+        //获取由主动方确认可以发送的消息
+        return this.findMessagesByStatus(MessageStatusEnum.CONFIRM_SEND,pageable).getData();
     }
 
     @Override
