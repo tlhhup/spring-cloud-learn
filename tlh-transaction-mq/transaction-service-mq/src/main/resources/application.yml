@@ -12,6 +12,8 @@ spring:
     driver-class-name: org.gjt.mm.mysql.Driver
   application:
     name: tlh-transaction-service-mq
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss  # 指定spring mvc时间格式化
 eureka:
   client:
     healthcheck:
