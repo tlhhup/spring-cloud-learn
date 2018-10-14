@@ -18,7 +18,6 @@ import java.util.List;
  * @date 18/10/11
  */
 @Slf4j
-@Component
 public class TransactionMessageClientFallBack implements TransactionMessageClient {
 
     @Override

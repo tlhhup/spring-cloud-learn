@@ -1,4 +1,4 @@
-package org.tlh.transaction.mq;
+package or.tlh.transaction.student;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,10 +19,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories
 @EnableSpringDataWebSupport
 @EnableTransactionManagement
-public class TlhSubstitutionApplication {
+public class TlhStudentApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TlhSubstitutionApplication.class,args);
+        SpringApplication.run(TlhStudentApplication.class,args);
     }
-
 }

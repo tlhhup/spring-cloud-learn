@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
  * @desc
  * @date 18/10/14
  */
-@Component
 public class DateFormatRegister implements FeignFormatterRegistrar {
 
     @Value("${spring.mvc.date-format}")

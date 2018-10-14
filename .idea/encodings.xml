@@ -22,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-commons-mq" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-example" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-student" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-subsitution" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-task-mq" charset="UTF-8" />

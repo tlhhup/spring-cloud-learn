@@ -23,7 +23,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8089/eureka/
   instance:
-    appname: tlh-transaction-service-mq
+    appname: tlh-transaction-task-mq
     lease-expiration-duration-in-seconds: 5
     lease-renewal-interval-in-seconds: 5
 feign:

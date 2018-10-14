@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>transaction-subsitution</module>
+        <module>transaction-student</module>
     </modules>
     <artifactId>transaction-example</artifactId>
 

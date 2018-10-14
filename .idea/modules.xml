@@ -24,6 +24,7 @@
       <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-commons-mq/transaction-commons-mq.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-commons-mq/transaction-commons-mq.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-example.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/transaction-service-mq.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/transaction-service-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-student/transaction-student.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-student/transaction-student.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-subsitution/transaction-subsitution.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-subsitution/transaction-subsitution.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-transaction-mq/transaction-task-mq/transaction-task-mq.iml" filepath="$PROJECT_DIR$/tlh-transaction-mq/transaction-task-mq/transaction-task-mq.iml" />
     </modules>

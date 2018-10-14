@@ -1,8 +1,8 @@
 server:
-  port: 8095
+  port: 8096
 spring:
   application:
-    name: tlh-transaction-substitution
+    name: tlh-transaction-student
   mvc:
     date-format: yyyy-MM-dd HH:mm:ss
   datasource:
@@ -10,12 +10,11 @@ spring:
     password: 123456
     driver-class-name: org.gjt.mm.mysql.Driver
     type: org.springframework.jdbc.datasource.DriverManagerDataSource
-    url: jdbc:mysql:///transaction_substitution
-  rabbitmq:
-    virtual-host: transaction-mq
+    url: jdbc:mysql:///transaction_student
   jpa:
     hibernate:
       ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
 eureka:
   client:
     healthcheck:
@@ -23,9 +22,13 @@ eureka:
     service-url:
       defaultZone: http://localhost:8089/eureka/
   instance:
-    appname: tlh-transaction-substitution
+    appname: tlh-transaction-student
     lease-expiration-duration-in-seconds: 5
     lease-renewal-interval-in-seconds: 5
 feign:
   hystrix:
     enabled: true # 开启hystrix支持
+
+logging:
+  level:
+    org.hibernate: debug
