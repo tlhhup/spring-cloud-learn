@@ -25,6 +25,7 @@
         <module>tlh-spring-boot-admin</module>
         <module>tlh-auth</module>
         <module>tlh-transaction-mq</module>
+        <module>tlh-gateway</module>
     </modules>
     <packaging>pom</packaging>
 

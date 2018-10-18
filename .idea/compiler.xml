@@ -13,6 +13,7 @@
         <module name="tlh-consume-feign" />
         <module name="tlh-eureka-server" />
         <module name="tlh-eureka-server-noauth" />
+        <module name="tlh-gateway" />
         <module name="tlh-gateway-zuul" />
         <module name="tlh-hystrix-dashboard" />
         <module name="tlh-scc-config-admin" />
@@ -39,6 +40,7 @@
       <module name="tlh-consume-feign" target="1.8" />
       <module name="tlh-eureka-server" target="1.8" />
       <module name="tlh-eureka-server-noauth" target="1.8" />
+      <module name="tlh-gateway" target="1.8" />
       <module name="tlh-gateway-zuul" target="1.8" />
       <module name="tlh-hystrix-dashboard" target="1.8" />
       <module name="tlh-scc-config-admin" target="1.6" />
