@@ -20,6 +20,11 @@ spring:
           uri: lb://tlh-service-user
           predicates:
           - Path=/user/**
+        - id: local_route     # 路由到但前网关的handler
+          uri: forward:/auth/login
+          predicates:
+          - Path=/login
+          - Method=GET
 eureka:
   client:
     service-url:
