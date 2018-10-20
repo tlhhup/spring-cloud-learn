@@ -135,3 +135,55 @@
 	          - Method=GET
 	2. LoadBalancerClient：如果uri指定的地址是以lb开头的，将使用LoadBalancerClient将服务名解析为真实的主机和端口号
 	3. Websocket：如果uri指定的地址是以ws或者wss开头的，将使用spring web socket注解转发到下游的websocket 
+5. **限流过滤器原理**，通过执行lua脚本来实现
+
+		local tokens_key = KEYS[1]			# 存令牌数的key
+		local timestamp_key = KEYS[2]		# 存最后写入时间key
+		
+		
+		local rate = tonumber(ARGV[1])		# 生成令牌的速度
+		local capacity = tonumber(ARGV[2])  # 令牌桶容量
+		local now = tonumber(ARGV[3])		# 当前时间 秒
+		local requested = tonumber(ARGV[4]) # 这次请求需要的令牌数
+		
+		local fill_time = capacity/rate		# 桶满时间 秒
+		local ttl = math.floor(fill_time*2) # 向下取整
+		
+		
+		
+		local last_tokens = tonumber(redis.call("get", tokens_key)) # 获取当前的令牌数
+		if last_tokens == nil then
+		  last_tokens = capacity
+		end
+		
+		
+		local last_refreshed = tonumber(redis.call("get", timestamp_key)) ＃最后写入时间 秒
+		if last_refreshed == nil then
+		  last_refreshed = 0
+		end
+		
+		local delta = math.max(0, now-last_refreshed)						# 上次获取token和这次的时间差，用于计算生成了多少新流入桶中的token
+		local filled_tokens = math.min(capacity, last_tokens+(delta*rate))  # 取最大容量和(存量＋新增)的最小值   --->当前桶的容量
+		local allowed = filled_tokens >= requested							# 是否允许反问
+		local new_tokens = filled_tokens
+		local allowed_num = 0
+		if allowed then
+		  new_tokens = filled_tokens - requested
+		  allowed_num = 1
+		end
+		
+		# 原子性操作
+		redis.call("setex", tokens_key, ttl, new_tokens)  					＃ 现在桶中存在的token，桶满就回到初始状态
+		redis.call("setex", timestamp_key, ttl, now)						# 最后写入时间
+		
+		return { allowed_num, new_tokens }
+	1. tokens_key用于模拟令牌桶，其存储桶中的可用令牌数
+	2. 通过计算上次和这次的写入时间差*速率=新流入桶中的令牌
+	3. 当前桶中的令牌大于请求需要的令牌则表示allowed，允许请求到达后端服务
+
+### 自定义API级别限流
+1. 思路
+	1. 限流的处理延用lua的处理方式
+	2. 通过aop拦截所有添加了限流注解的请求，将注解的信息第一次写入到redis中(key、rate、capacity、requested(需要的令牌数))，后面都从redis中动态获取
+	3. 通过config消息总线实现客户端配置刷新的原理，实现限流配置的动态刷新	
+ 

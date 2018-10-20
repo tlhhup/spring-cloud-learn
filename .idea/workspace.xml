@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d213ba8e-2668-43b3-afe3-7a3c0da36edc" name="Default" comment="1.更新Gateway说明&#10;2.使用Gateway的限流过滤器进行基于主机名的限流应用">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-gateway/src/main/java/org/tlh/springcloud/controller/LoginController.java" />
+    <list default="true" id="d213ba8e-2668-43b3-afe3-7a3c0da36edc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/README.md" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-gateway/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-gateway/src/main/resources/application.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -72,25 +70,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-gateway/src/main/java/org/tlh/springcloud/controller/LoginController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="23" />
-              <folding>
-                <element signature="e#444#445#0" expanded="true" />
-                <element signature="e#474#475#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-gateway/src/main/resources/application.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="221">
+                <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -278,55 +266,6 @@
               <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
               <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="tlh-gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -727,7 +666,7 @@
       <workItem from="1539784402362" duration="1331000" />
       <workItem from="1539785830149" duration="453000" />
       <workItem from="1539869323981" duration="7363000" />
-      <workItem from="1540003829852" duration="22539000" />
+      <workItem from="1540003829852" duration="26195000" />
     </task>
     <task id="LOCAL-00001" summary="1.添加异步自定义线程池&#10;2.自动生成服务器端口号">
       <created>1538402778190</created>
@@ -988,7 +927,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540026040870</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="1.更新Gateway说明&#10;2.添加网关本地的route，及调用网关本地的handler进行处理，不会将请求路由到后端服务">
+      <created>1540028920659</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1540028920659</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1024,7 +970,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254100000" />
+    <option name="totallyTimeSpent" value="257756000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1053,7 +999,7 @@
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31412104" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2267525" sideWeight="0.4755784" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26466382" sideWeight="0.4755784" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1085,13 +1031,13 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32331902" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run Dashboard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46397695" sideWeight="0.48569384" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run Dashboard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46397695" sideWeight="0.48569384" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32761088" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3266187" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299712" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31412104" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31412104" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2267525" sideWeight="0.4755784" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1135,7 +1081,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/config-repo" />
     </ignored-roots>
-    <MESSAGE value="1.处理hystrix请求合并报空指针问题" />
     <MESSAGE value="1.添加feign使用文档&#10;2.添加hystrix使用文档" />
     <MESSAGE value="1.集成JWT&#10;2.集成swagger&#10;3.认证服务token生成和校验" />
     <MESSAGE value="1.服务提供方通过认证中心对请求进行认证" />
@@ -1160,7 +1105,8 @@
     <MESSAGE value="1.Gateway初探" />
     <MESSAGE value="1.添加Gateway说明&#10;2.提供Gateway后端两个实例服务" />
     <MESSAGE value="1.更新Gateway说明&#10;2.使用Gateway的限流过滤器进行基于主机名的限流应用" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.更新Gateway说明&#10;2.使用Gateway的限流过滤器进行基于主机名的限流应用" />
+    <MESSAGE value="1.更新Gateway说明&#10;2.添加网关本地的route，及调用网关本地的handler进行处理，不会将请求路由到后端服务" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.更新Gateway说明&#10;2.添加网关本地的route，及调用网关本地的handler进行处理，不会将请求路由到后端服务" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1186,47 +1132,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/io/projectreactor/reactor-core/3.1.6.RELEASE/reactor-core-3.1.6.RELEASE-sources.jar!/reactor/core/publisher/MonoNext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#1232#1233#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/io/projectreactor/reactor-core/3.1.6.RELEASE/reactor-core-3.1.6.RELEASE-sources.jar!/reactor/core/publisher/Operators.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="1635" column="0" lean-forward="false" selection-start-line="1635" selection-start-column="0" selection-end-line="1635" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/io/projectreactor/reactor-core/3.1.6.RELEASE/reactor-core-3.1.6.RELEASE-sources.jar!/reactor/core/publisher/FluxOnAssembly.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="517" column="0" lean-forward="false" selection-start-line="517" selection-start-column="0" selection-end-line="517" selection-end-column="0" />
-          <folding>
-            <element signature="e#11688#11689#0" expanded="true" />
-            <element signature="e#11713#11714#0" expanded="true" />
-            <element signature="e#11849#11850#0" expanded="true" />
-            <element signature="e#11877#11878#0" expanded="true" />
-            <element signature="e#13485#13486#0" expanded="true" />
-            <element signature="e#13506#13507#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/io/projectreactor/reactor-core/3.1.6.RELEASE/reactor-core-3.1.6.RELEASE-sources.jar!/reactor/core/publisher/MonoJust.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/io/projectreactor/reactor-core/3.1.6.RELEASE/reactor-core-3.1.6.RELEASE-sources.jar!/reactor/core/publisher/MonoCallableOnAssembly.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1505,17 +1410,9 @@
         <state relative-caret-position="153">
           <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
-            <element signature="e#1092#1093#0" expanded="true" />
-            <element signature="e#1117#1118#0" expanded="true" />
+            <element signature="e#1092#1093#0" expanded="false" />
+            <element signature="e#1117#1118#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/cloud/spring-cloud-gateway-core/2.0.1.RELEASE/spring-cloud-gateway-core-2.0.1.RELEASE-sources.jar!/org/springframework/cloud/gateway/filter/ratelimit/RedisRateLimiter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1548,8 +1445,8 @@
         <state relative-caret-position="223">
           <caret line="201" column="41" lean-forward="false" selection-start-line="201" selection-start-column="41" selection-end-line="201" selection-end-column="41" />
           <folding>
-            <element signature="e#7213#7214#0" expanded="true" />
-            <element signature="e#7239#7240#0" expanded="true" />
+            <element signature="e#7213#7214#0" expanded="false" />
+            <element signature="e#7239#7240#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1567,17 +1464,6 @@
         <state relative-caret-position="68">
           <caret line="10" column="3" lean-forward="false" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-836">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -1610,17 +1496,71 @@
         <state relative-caret-position="221">
           <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="23" />
           <folding>
-            <element signature="e#444#445#0" expanded="true" />
-            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#444#445#0" expanded="false" />
+            <element signature="e#474#475#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-gateway/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        <state relative-caret-position="460">
+          <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot-starter-data-redis-reactive/2.0.1.RELEASE/spring-boot-starter-data-redis-reactive-2.0.1.RELEASE.jar!/META-INF/spring.provides">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/cloud/spring-cloud-gateway-core/2.0.1.RELEASE/spring-cloud-gateway-core-2.0.1.RELEASE.jar!/META-INF/scripts/request_rate_limiter.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/Math.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="657">
+          <caret line="440" column="25" lean-forward="false" selection-start-line="440" selection-start-column="25" selection-end-line="440" selection-end-column="25" />
+          <folding>
+            <element signature="e#17181#17182#0" expanded="true" />
+            <element signature="e#17264#17265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/redisson/redisson/3.8.2/redisson-3.8.2-sources.jar!/org/redisson/RedissonRateLimiter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="59" column="13" lean-forward="true" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/cloud/spring-cloud-gateway-core/2.0.1.RELEASE/spring-cloud-gateway-core-2.0.1.RELEASE-sources.jar!/org/springframework/cloud/gateway/filter/ratelimit/RedisRateLimiter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="168" column="42" lean-forward="false" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="221">
+            <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
