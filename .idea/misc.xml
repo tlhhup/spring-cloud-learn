@@ -8,6 +8,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/tlh-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/pom.xml" />
       </set>
     </option>

@@ -1,0 +1,15 @@
+server:
+  port: 8096
+spring:
+  application:
+    name: tlh-gateway-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    appname: tlh-gateway-gateway
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5

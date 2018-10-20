@@ -10,6 +10,11 @@
     <file url="file://$PROJECT_DIR$/tlh-eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-eureka-server-noauth" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlh-gateway-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-a" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-user" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-gateway-zuul" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-hystrix-dashboard" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tlh-scc-config-admin" charset="UTF-8" />

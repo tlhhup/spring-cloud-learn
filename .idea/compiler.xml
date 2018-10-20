@@ -20,8 +20,11 @@
         <module name="tlh-scc-config-admin-db" />
         <module name="tlh-scc-config-client" />
         <module name="tlh-scc-ui-server" />
+        <module name="tlh-service-a" />
         <module name="tlh-service-consumer" />
+        <module name="tlh-service-exam" />
         <module name="tlh-service-provider" />
+        <module name="tlh-service-user" />
         <module name="tlh-spring-boot-admin" />
         <module name="transaction-client-mq" />
         <module name="transaction-commons-mq" />
@@ -41,14 +44,18 @@
       <module name="tlh-eureka-server" target="1.8" />
       <module name="tlh-eureka-server-noauth" target="1.8" />
       <module name="tlh-gateway" target="1.8" />
+      <module name="tlh-gateway-gateway" target="1.8" />
       <module name="tlh-gateway-zuul" target="1.8" />
       <module name="tlh-hystrix-dashboard" target="1.8" />
       <module name="tlh-scc-config-admin" target="1.6" />
       <module name="tlh-scc-config-admin-db" target="1.6" />
       <module name="tlh-scc-config-client" target="1.8" />
       <module name="tlh-scc-ui-server" target="1.6" />
+      <module name="tlh-service-a" target="1.8" />
       <module name="tlh-service-consumer" target="1.8" />
+      <module name="tlh-service-exam" target="1.8" />
       <module name="tlh-service-provider" target="1.8" />
+      <module name="tlh-service-user" target="1.8" />
       <module name="tlh-spring-boot-admin" target="1.8" />
       <module name="tlh-transaction-mq" target="1.8" />
       <module name="transaction-client-mq" target="1.8" />
