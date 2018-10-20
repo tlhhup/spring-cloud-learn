@@ -3,6 +3,23 @@ server:
 spring:
   application:
     name: tlh-gateway-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: exam_route
+          uri: lb://tlh-service-exam # 通过ribbon进行负载
+          predicates:
+          - Path=/exam/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10  # 每秒生成的令牌
+                redis-rate-limiter.burstCapacity: 20  # 桶大小
+                key-resolver: "#{@hostNameKeyResolver}"
+        - id: user_route
+          uri: lb://tlh-service-user
+          predicates:
+          - Path=/user/**
 eureka:
   client:
     service-url:

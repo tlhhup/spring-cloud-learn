@@ -1,5 +1,7 @@
 server:
   port: 8098
+  servlet:
+    path: /user
 spring:
   application:
     name: tlh-service-user
