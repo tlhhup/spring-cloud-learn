@@ -26,3 +26,4 @@ spring-cloud组件学习和第三方开源项目集成
 2. spring-boot-admin：https://github.com/codecentric/spring-boot-admin
 3. redission：https://github.com/redisson/redisson
 4. spring-boot-swagger：https://github.com/SpringForAll/spring-boot-starter-swagger
+5. Reflections：https://github.com/ronmamo/reflections

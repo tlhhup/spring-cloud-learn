@@ -15,3 +15,6 @@ eureka:
     appname: tlh-service-exam
     lease-expiration-duration-in-seconds: 5
     lease-renewal-interval-in-seconds: 5
+tlh:
+  rate:
+    basePackage: org.tlh.springcloud.controller

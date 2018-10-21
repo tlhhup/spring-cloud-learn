@@ -15,6 +15,7 @@
         <module>tlh-gateway</module>
         <module>tlh-service-exam</module>
         <module>tlh-service-user</module>
+        <module>tlh-ratelimiter-starter</module>
     </modules>
 
     <dependencies>

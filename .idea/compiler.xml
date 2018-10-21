@@ -16,6 +16,7 @@
         <module name="tlh-gateway" />
         <module name="tlh-gateway-zuul" />
         <module name="tlh-hystrix-dashboard" />
+        <module name="tlh-ratelimiter-starter" />
         <module name="tlh-scc-config-admin" />
         <module name="tlh-scc-config-admin-db" />
         <module name="tlh-scc-config-client" />
@@ -47,6 +48,7 @@
       <module name="tlh-gateway-gateway" target="1.8" />
       <module name="tlh-gateway-zuul" target="1.8" />
       <module name="tlh-hystrix-dashboard" target="1.8" />
+      <module name="tlh-ratelimiter-starter" target="1.8" />
       <module name="tlh-scc-config-admin" target="1.6" />
       <module name="tlh-scc-config-admin-db" target="1.6" />
       <module name="tlh-scc-config-client" target="1.8" />

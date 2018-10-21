@@ -1,0 +1,3 @@
+### 请求限流
+1. 通过spring内置的监听器(ContextRefreshedEvent)在spring容器初始化完成之后来获取所有添加了RequestRateLimit注解的方法
+2. spring boot提供的listener用于监听Application的动作，并不是spring容器的动作，可以理解为一些预处理的动作。

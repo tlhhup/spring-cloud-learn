@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.tlh.springcloud.annotation.RequestRateLimit;
 
 /**
  * Created by 离歌笑tlh/hu ping on 18/10/20
@@ -19,6 +20,12 @@ public class ExamController {
     public String start(){
         log.info(this.getClass().getSimpleName()+"--->start");
         return "start exam";
+    }
+
+    @GetMapping("/end")
+    @RequestRateLimit("exam.end")
+    public String end(){
+        return "end";
     }
 
 }
