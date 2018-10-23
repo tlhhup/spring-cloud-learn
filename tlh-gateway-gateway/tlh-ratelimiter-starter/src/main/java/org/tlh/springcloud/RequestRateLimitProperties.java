@@ -10,7 +10,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "tlh.rate")
-public class TlhApiRateLimitProperties {
+public class RequestRateLimitProperties {
+
+    public static final String RATE_PREFIX="rate.";
 
     private String basePackage;
 

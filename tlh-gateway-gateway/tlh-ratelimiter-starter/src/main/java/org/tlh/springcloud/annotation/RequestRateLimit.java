@@ -1,7 +1,5 @@
 package org.tlh.springcloud.annotation;
 
-import org.springframework.core.annotation.AliasFor;
-
 import java.lang.annotation.*;
 
 /**
@@ -18,11 +16,7 @@ public @interface RequestRateLimit {
      * 存储在redis中的key
      * @return
      */
-    @AliasFor("value")
     String tokenKey() default "";
-
-    @AliasFor("tokenKey")
-    String value() default "";
 
     /**
      * 生成令牌的速率

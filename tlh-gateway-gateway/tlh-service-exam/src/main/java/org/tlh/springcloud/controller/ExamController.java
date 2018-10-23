@@ -23,7 +23,7 @@ public class ExamController {
     }
 
     @GetMapping("/end")
-    @RequestRateLimit("exam.end")
+    @RequestRateLimit(tokenKey = "exam.end")
     public String end(){
         return "end";
     }
