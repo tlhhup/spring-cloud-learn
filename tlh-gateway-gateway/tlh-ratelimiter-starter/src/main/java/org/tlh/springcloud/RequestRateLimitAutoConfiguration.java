@@ -4,15 +4,21 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
+import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
@@ -22,8 +28,11 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scripting.support.ResourceScriptSource;
 import org.tlh.springcloud.entity.RateLimit;
+import org.tlh.springcloud.filter.RateKeyResolver;
+import org.tlh.springcloud.filter.RequestRateLimitFilter;
 import org.tlh.springcloud.listener.InitRequestRateLimitListener;
 
+import javax.servlet.Filter;
 import java.util.List;
 
 /**
@@ -33,6 +42,7 @@ import java.util.List;
  */
 @Slf4j
 @Configuration
+@ConditionalOnClass(RedisOperations.class)
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 @EnableConfigurationProperties(RequestRateLimitProperties.class)
 public class RequestRateLimitAutoConfiguration {
@@ -89,6 +99,27 @@ public class RequestRateLimitAutoConfiguration {
                 .build();
         return new ReactiveRedisTemplate<>(reactiveRedisConnectionFactory,
                 serializationContext);
+    }
+
+    @Bean
+    @ConditionalOnClass(Filter.class)
+    @ConditionalOnProperty(prefix = "tlh",name = "filter.enable",havingValue = "true")
+    public FilterRegistrationBean<RequestRateLimitFilter> rateLimitFilterFilterRegistration(ReactiveRedisTemplate<String, String> reactiveRedisTemplate,
+                                                                                            @Qualifier(RequestRateLimitProperties.REDIS_SCRIPT_NAME) RedisScript<List<Long>> redisScript,
+                                                                                            @Autowired(required = false)RateKeyResolver rateKeyResolver,
+                                                                                            RedisTemplate<String,RateLimit> rateLimitRedisTemplate){
+        RequestRateLimitFilter requestRateLimitFilter=new RequestRateLimitFilter();
+        requestRateLimitFilter.setRateLimitOperations(rateLimitRedisTemplate.opsForValue());
+        requestRateLimitFilter.setReactiveRedisTemplate(reactiveRedisTemplate);
+        requestRateLimitFilter.setScript(redisScript);
+        requestRateLimitFilter.setKeyResolver(rateKeyResolver);
+
+        //register filter
+        FilterRegistrationBean<RequestRateLimitFilter> registrationBean=new FilterRegistrationBean<>();
+
+        registrationBean.setFilter(requestRateLimitFilter);
+        registrationBean.addUrlPatterns("/*");
+        return registrationBean;
     }
 
 }

@@ -6,7 +6,7 @@ package org.tlh.springcloud.filter;
  * Github: https://github.com/tlhhup
  */
 @FunctionalInterface
-public interface KeyResolver {
+public interface RateKeyResolver {
 
     String resolve(String uri);
 }

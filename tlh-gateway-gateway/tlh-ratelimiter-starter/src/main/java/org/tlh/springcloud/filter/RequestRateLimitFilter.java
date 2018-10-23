@@ -2,7 +2,6 @@ package org.tlh.springcloud.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.core.script.RedisScript;
 import org.tlh.springcloud.RequestRateLimitProperties;
@@ -27,11 +26,15 @@ import java.util.List;
 @Slf4j
 public class RequestRateLimitFilter implements Filter {
 
-    private KeyResolver defaultKeysolver;
-    private KeyResolver keyResolver;
+    private RateKeyResolver defaultKeyResolver;
+    private RateKeyResolver keyResolver;
     private ValueOperations<String, RateLimit> rateLimitOperations;
     private ReactiveRedisTemplate<String, String> reactiveRedisTemplate;
     private RedisScript<List<Long>> script;
+
+    public RequestRateLimitFilter() {
+        this.defaultKeyResolver = new DefaultRateKeyResolver();
+    }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -43,35 +46,37 @@ public class RequestRateLimitFilter implements Filter {
         log.debug("RequestRateLimitFilter--->start rate limit");
 
         if(servletRequest instanceof HttpServletRequest){
-            String uri = ((HttpServletRequest) servletRequest).getRequestURI();
-            String tokenKey=this.keyResolver!=null?keyResolver.resolve(uri):this.defaultKeysolver.resolve(uri);
+            HttpServletRequest request = (HttpServletRequest) servletRequest;
+            String servletPath = request.getServletPath();
+            String uri = request.getRequestURI().substring(servletPath.length());
+            String tokenKey=this.keyResolver!=null?keyResolver.resolve(uri):this.defaultKeyResolver.resolve(uri);
             RateLimit rateLimit = this.rateLimitOperations.get(tokenKey);
+            if(rateLimit!=null) {
 
-            List<String> keys = getKeys(tokenKey);
+                List<String> keys = getKeys(tokenKey);
 
 
-            List<String> scriptArgs = Arrays.asList(rateLimit.getReplenishRate() + "", rateLimit.getBurstCapacity() + "",
-                    Instant.now().getEpochSecond() + "", rateLimit.getRequested()+"");
-            Flux<List<Long>> flux = this.reactiveRedisTemplate.execute(this.script, keys, scriptArgs);
-            Mono<Boolean> result = flux.onErrorResume(throwable -> Flux.just(Arrays.asList(1L, -1L)))
-                    .reduce(new ArrayList<Long>(), (longs, l) -> {
-                        longs.addAll(l);
-                        return longs;
-                    }).map(results -> {
-                        boolean allowed = results.get(0) == 1L;
-                        Long tokensLeft = results.get(1);
+                List<String> scriptArgs = Arrays.asList(rateLimit.getReplenishRate() + "", rateLimit.getBurstCapacity() + "",
+                        Instant.now().getEpochSecond() + "", rateLimit.getRequested() + "");
+                Flux<List<Long>> flux = this.reactiveRedisTemplate.execute(this.script, keys, scriptArgs);
+                Mono<Boolean> result = flux.onErrorResume(throwable -> Flux.just(Arrays.asList(1L, -1L)))
+                        .reduce(new ArrayList<Long>(), (longs, l) -> {
+                            longs.addAll(l);
+                            return longs;
+                        }).map(results -> {
+                            boolean allowed = results.get(0) == 1L;
+                            Long tokensLeft = results.get(1);
 
-                        log.debug("RequestRateLimitFilter--->tokens left:{}", tokensLeft);
-                        return allowed;
-                    });
-            if(result.block()){
-                filterChain.doFilter(servletRequest,servletResponse);
-            }else{
-                ((HttpServletResponse)servletResponse).setStatus(RequestRateLimitProperties.TO_MANY_REQUEST);
+                            log.debug("RequestRateLimitFilter--->tokens left:{}", tokensLeft);
+                            return allowed;
+                        });
+                if (!result.block()) {
+                    ((HttpServletResponse) servletResponse).setStatus(RequestRateLimitProperties.TO_MANY_REQUEST);
+                    return;
+                }
             }
-        }else{
-            filterChain.doFilter(servletRequest,servletResponse);
         }
+        filterChain.doFilter(servletRequest, servletResponse);
 
         log.debug("RequestRateLimitFilter--->end rate limit");
     }
@@ -94,8 +99,8 @@ public class RequestRateLimitFilter implements Filter {
         return Arrays.asList(tokenKey, timestampKey);
     }
 
-    public void setRedisTemplate(RedisTemplate<String, RateLimit> redisTemplate) {
-        this.rateLimitOperations = redisTemplate.opsForValue();
+    public void setReactiveRedisTemplate(ReactiveRedisTemplate<String, String> reactiveRedisTemplate) {
+        this.reactiveRedisTemplate = reactiveRedisTemplate;
     }
 
     public void setScript(RedisScript<List<Long>> script) {
@@ -104,5 +109,9 @@ public class RequestRateLimitFilter implements Filter {
 
     public void setRateLimitOperations(ValueOperations<String, RateLimit> rateLimitOperations) {
         this.rateLimitOperations = rateLimitOperations;
+    }
+
+    public void setKeyResolver(RateKeyResolver keyResolver) {
+        this.keyResolver = keyResolver;
     }
 }

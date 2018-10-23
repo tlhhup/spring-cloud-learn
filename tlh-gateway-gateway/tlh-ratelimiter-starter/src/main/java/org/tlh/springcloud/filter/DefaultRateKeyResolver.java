@@ -7,7 +7,7 @@ import org.tlh.springcloud.RequestRateLimitProperties;
  * <p>
  * Github: https://github.com/tlhhup
  */
-public class DefaultKeyResolver implements KeyResolver {
+public class DefaultRateKeyResolver implements RateKeyResolver {
 
     @Override
     public String resolve(String uri) {

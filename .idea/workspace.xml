@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d213ba8e-2668-43b3-afe3-7a3c0da36edc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/TlhApiRateLimitAutoConfiguration.java" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitAutoConfiguration.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/TlhApiRateLimitProperties.java" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitProperties.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/listener/InitApiRateLimitListener.java" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/listener/InitRequestRateLimitListener.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/DefaultKeyResolver.java" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/DefaultRateKeyResolver.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/KeyResolver.java" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/RateKeyResolver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/pom.xml" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/annotation/RequestRateLimit.java" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/annotation/RequestRateLimit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/resources/META-INF/spring.factories" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/resources/META-INF/spring.factories" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/tlh-ratelimiter-starter.iml" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/tlh-ratelimiter-starter.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/pom.xml" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/java/org/tlh/springcloud/controller/ExamController.java" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/java/org/tlh/springcloud/controller/ExamController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/tlh-service-exam.iml" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/tlh-service-exam.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitAutoConfiguration.java" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitAutoConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/RequestRateLimitFilter.java" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/RequestRateLimitFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/resources/application.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -81,56 +75,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RequestRateLimitAutoConfiguration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitAutoConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="26" column="45" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2177#2188#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestRateLimitProperties.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitProperties.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InitRequestRateLimitListener.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/listener/InitRequestRateLimitListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="50" column="34" lean-forward="true" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestRateLimit.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/annotation/RequestRateLimit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ExamController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/java/org/tlh/springcloud/controller/ExamController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="24" column="23" lean-forward="true" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+              <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestRateLimitFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/RequestRateLimitFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="918">
+              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestRateLimitAutoConfiguration.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitAutoConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="47" column="30" lean-forward="false" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3334#3345#0" expanded="true" />
+                <element signature="e#3813#3843#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/resources/application.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -170,13 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/TransactionClientConfig.java" />
-        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-student/src/main/java/or/tlh/transaction/student/TlhStudentApplication.java" />
-        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/resources/META-INF/spring.factories" />
-        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-task-mq/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-student/src/main/java/or/tlh/transaction/student/controller/StudentController.java" />
-        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/TransactionClientAutoConfiguration.java" />
-        <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-subsitution/src/main/java/org/tlh/transaction/mq/consume/StudentListener.java" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-student/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-client-mq/src/main/java/org/tlh/transaction/mq/feign/TransactionMessageClient.java" />
         <option value="$PROJECT_DIR$/tlh-transaction-mq/transaction-service-mq/src/main/java/org/tlh/transaction/mq/service/impl/TransactionMessagesServiceImpl.java" />
@@ -204,7 +182,6 @@
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/TlhApiRetelimiterAutoConfiguration.java" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/TlhApiRatelimiterAutoConfiguration.java" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/TlhApiRatelimitAutoConfiguration.java" />
-        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/resources/META-INF/spring.factories" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/TlhApiRateLimitAutoConfiguration.java" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/java/org/tlh/springcloud/TlhExamApplication.java" />
@@ -215,12 +192,20 @@
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/listener/InitApiRateLimitListener.java" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/TlhApiRateLimitProperties.java" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/pom.xml" />
-        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitAutoConfiguration.java" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/pom.xml" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/annotation/RequestRateLimit.java" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/java/org/tlh/springcloud/controller/ExamController.java" />
-        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitProperties.java" />
         <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/listener/InitRequestRateLimitListener.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/DefualtKeyResolver.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/DefaultKeyResolver.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/RequesetRateLimitFilter.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitProperties.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/KeyResolver.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/RateKeyResolver.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/DefaultRateKeyResolver.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitAutoConfiguration.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/RequestRateLimitFilter.java" />
+        <option value="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/resources/application.yml" />
       </list>
     </option>
   </component>
@@ -323,6 +308,57 @@
               <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
               <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-ratelimiter-starter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-ratelimiter-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-ratelimiter-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-ratelimiter-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-ratelimiter-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="springcloud" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-ratelimiter-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="springcloud" type="462c0819:PsiDirectoryNode" />
+              <item name="filter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-cloud-learn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-cloud-learn" type="462c0819:PsiDirectoryNode" />
+              <item name="tlh-gateway-gateway" type="462c0819:PsiDirectoryNode" />
               <item name="tlh-service-exam" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -410,6 +446,9 @@
       <recent name="org.tlh.transaction.mq.service" />
       <recent name="org.tlh.springcloud.service" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.tlh.transaction.mq.repositories" />
       <recent name="org.tlh.transaction.mq.entity" />
@@ -417,15 +456,12 @@
       <recent name="org.tlh.springcloud.utils" />
       <recent name="org.tlh.springcloud.config" />
     </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/resources/META-INF" />
       <recent name="$PROJECT_DIR$/tlh-gateway-gateway/pic" />
       <recent name="$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-user/src/main/resources" />
       <recent name="$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-student/src/main/resources" />
       <recent name="$PROJECT_DIR$/tlh-transaction-mq/transaction-example/transaction-subsitution/src/main/resources" />
-      <recent name="$PROJECT_DIR$/tlh-scc-config-admin-db/pic" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -783,7 +819,7 @@
       <workItem from="1540003829852" duration="27311000" />
       <workItem from="1540101528220" duration="7402000" />
       <workItem from="1540109802033" duration="10302000" />
-      <workItem from="1540306522902" duration="2039000" />
+      <workItem from="1540306522902" duration="6373000" />
     </task>
     <task id="LOCAL-00001" summary="1.添加异步自定义线程池&#10;2.自动生成服务器端口号">
       <created>1538402778190</created>
@@ -1072,7 +1108,21 @@
       <option name="project" value="LOCAL" />
       <updated>1540127552597</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="1.完成限流API数据的存储到redis">
+      <created>1540308746128</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1540308746128</updated>
+    </task>
+    <task id="LOCAL-00043" summary="1.完成限流Filter的编写&#10;2.提供Keysolver解析URL">
+      <created>1540310388589</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1540310388589</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1108,7 +1158,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="278615000" />
+    <option name="totallyTimeSpent" value="282949000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1135,9 +1185,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32708934" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299712" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.312769" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31268013" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2546495" sideWeight="0.4755784" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2546495" sideWeight="0.4755784" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32853025" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1175,7 +1225,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32708934" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299712" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.312769" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31268013" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2546495" sideWeight="0.4755784" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1219,8 +1269,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/config-repo" />
     </ignored-roots>
-    <MESSAGE value="1.服务消费端通过定义resttemplate拦截器来添加Authorization到请求头&#10;2.服务消费端通过定义feign拦截器来添加Authorization到请求头&#10;3.zuul添加请求到将Authorization传递到后端服务" />
-    <MESSAGE value="1.resttemplate服务降级中获取异常信息&#10;2.feign获取服务降级异常信息" />
     <MESSAGE value="1.结合ConfigurationProperties注解实现config-client端拉取config-server的数据封装成对象" />
     <MESSAGE value="1.可靠消息一致性结构搭建&#10;2.更新分布式事务说明文档" />
     <MESSAGE value="1.更新分布式事务说明文档" />
@@ -1244,93 +1292,20 @@
     <MESSAGE value="1.限流过滤器底层实现原理分析&#10;2.API级别限流处理思路整理" />
     <MESSAGE value="1.添加第三方组建引用" />
     <MESSAGE value="1.完成限流API的自动扫描&#10;2.application Event监听application的状态，并不是spring容器的状态" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.完成限流API的自动扫描&#10;2.application Event监听application的状态，并不是spring容器的状态" />
+    <MESSAGE value="1.完成限流API数据的存储到redis" />
+    <MESSAGE value="1.完成限流Filter的编写&#10;2.提供Keysolver解析URL" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.完成限流Filter的编写&#10;2.提供Keysolver解析URL" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/listener/InitRequestRateLimitListener.java</url>
-          <line>42</line>
-          <properties />
-          <option name="timeStamp" value="150" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="151" />
+      <option name="time" value="157" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/spring-core/5.0.5.RELEASE/spring-core-5.0.5.RELEASE-sources.jar!/org/springframework/core/ResolvableType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="1074" column="0" lean-forward="false" selection-start-line="1074" selection-start-column="0" selection-end-line="1074" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/spring-context/5.0.5.RELEASE/spring-context-5.0.5.RELEASE-sources.jar!/org/springframework/context/event/AbstractApplicationEventMulticaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="199" column="9" lean-forward="true" selection-start-line="199" selection-start-column="9" selection-end-line="199" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot/2.0.1.RELEASE/spring-boot-2.0.1.RELEASE-sources.jar!/org/springframework/boot/context/event/ApplicationStartingEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot-devtools/2.0.1.RELEASE/spring-boot-devtools-2.0.1.RELEASE-sources.jar!/org/springframework/boot/devtools/restart/RestartApplicationListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/cloud/spring-cloud-context/2.0.1.RELEASE/spring-cloud-context-2.0.1.RELEASE-sources.jar!/org/springframework/cloud/context/restart/RestartListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot/2.0.1.RELEASE/spring-boot-2.0.1.RELEASE-sources.jar!/org/springframework/boot/context/event/ApplicationStartedEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot/2.0.1.RELEASE/spring-boot-2.0.1.RELEASE-sources.jar!/org/springframework/boot/SpringApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="342" column="0" lean-forward="false" selection-start-line="342" selection-start-column="0" selection-end-line="342" selection-end-column="0" />
-          <folding>
-            <element signature="e#9666#9667#0" expanded="false" />
-            <element signature="e#9699#9700#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot/2.0.1.RELEASE/spring-boot-2.0.1.RELEASE-sources.jar!/org/springframework/boot/SpringApplicationRunListeners.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot/2.0.1.RELEASE/spring-boot-2.0.1.RELEASE-sources.jar!/org/springframework/boot/context/event/ApplicationReadyEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot/2.0.1.RELEASE/spring-boot-2.0.1.RELEASE-sources.jar!/org/springframework/boot/context/event/EventPublishingRunListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -1546,14 +1521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot-autoconfigure/2.0.1.RELEASE/spring-boot-autoconfigure-2.0.1.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/data/redis/RedisAutoConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/resources/META-INF/spring.factories">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1589,22 +1556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-99">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/java/org/tlh/springcloud/controller/ExamController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="23" lean-forward="true" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/spring-core/5.0.5.RELEASE/spring-core-5.0.5.RELEASE-sources.jar!/org/springframework/core/annotation/AliasFor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
@@ -1613,10 +1564,126 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/listener/InitRequestRateLimitListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="56" column="68" lean-forward="true" selection-start-line="56" selection-start-column="68" selection-end-line="56" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/annotation/RequestRateLimit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        <state relative-caret-position="272">
+          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/resources/META-INF/scripts/request_rate_limiter.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/cloud/spring-cloud-gateway-core/2.0.1.RELEASE/spring-cloud-gateway-core-2.0.1.RELEASE-sources.jar!/org/springframework/cloud/gateway/filter/ratelimit/KeyResolver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/cloud/spring-cloud-gateway-core/2.0.1.RELEASE/spring-cloud-gateway-core-2.0.1.RELEASE-sources.jar!/org/springframework/cloud/gateway/filter/ratelimit/RateLimiter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/cloud/spring-cloud-gateway-core/2.0.1.RELEASE/spring-cloud-gateway-core-2.0.1.RELEASE-sources.jar!/org/springframework/cloud/gateway/filter/ratelimit/RedisRateLimiter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="170" column="28" lean-forward="false" selection-start-line="168" selection-start-column="29" selection-end-line="168" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/cloud/spring-cloud-gateway-core/2.0.1.RELEASE/spring-cloud-gateway-core-2.0.1.RELEASE-sources.jar!/org/springframework/cloud/gateway/config/GatewayRedisAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/springframework/boot/spring-boot-autoconfigure/2.0.1.RELEASE/spring-boot-autoconfigure-2.0.1.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/data/redis/RedisAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/RateKeyResolver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/apache-maven-3.5.2/repositories/org/apache/tomcat/embed/tomcat-embed-core/8.5.29/tomcat-embed-core-8.5.29.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="76" column="122" lean-forward="false" selection-start-line="76" selection-start-column="122" selection-end-line="76" selection-end-column="122" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/java/org/tlh/springcloud/controller/ExamController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/DefaultRateKeyResolver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/filter/RequestRateLimitFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-service-exam/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1624,28 +1691,11 @@
     <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitAutoConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="26" column="45" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+          <caret line="47" column="30" lean-forward="false" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2177#2188#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/RequestRateLimitProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tlh-gateway-gateway/tlh-ratelimiter-starter/src/main/java/org/tlh/springcloud/listener/InitRequestRateLimitListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="50" column="34" lean-forward="true" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#3334#3345#0" expanded="true" />
+            <element signature="e#3813#3843#0" expanded="true" />
           </folding>
         </state>
       </provider>
