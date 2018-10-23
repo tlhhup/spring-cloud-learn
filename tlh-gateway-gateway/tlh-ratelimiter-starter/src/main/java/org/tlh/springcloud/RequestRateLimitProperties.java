@@ -12,7 +12,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "tlh.rate")
 public class RequestRateLimitProperties {
 
-    public static final String RATE_PREFIX="rate.";
+    public static final int TO_MANY_REQUEST = 429;
+    public static final String RATE_PREFIX = "rate.";
+    public static final String REDIS_SCRIPT_NAME = "requestRateLimiterScript";
 
     private String basePackage;
 
