@@ -55,13 +55,15 @@ public class InitRequestRateLimitListener implements ApplicationListener<Context
                 RequestRateLimit annotation = method.getAnnotation(RequestRateLimit.class);
                 if (annotation != null) {
                     if(StringUtils.hasText(annotation.tokenKey())) {
-                        rateLimit = new RateLimit(annotation.tokenKey(), annotation.replenishRate(), annotation.burstCapacity(), annotation.requested());
+                        rateLimit = new RateLimit(annotation.tokenKey(), annotation.replenishRate(), //
+                                annotation.burstCapacity(), annotation.requested(),annotation.enable());
                         rateLimits.add(rateLimit);
                         rateLimit = null;
                     }
                 }
             }
         }
+        // todo 优化存储方式
         if(!rateLimits.isEmpty()){
             for(RateLimit limit:rateLimits){
                 this.rateLimitRedisTemplate.opsForValue().set(RATE_PREFIX.concat(limit.getTokenKey()),limit);

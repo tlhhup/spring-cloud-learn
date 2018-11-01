@@ -18,5 +18,5 @@ eureka:
 tlh:
   rate:
     basePackage: org.tlh.springcloud.controller
-  filter:
-    enable: true
+#  filter:
+#    enable: true

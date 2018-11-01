@@ -36,4 +36,10 @@ public @interface RequestRateLimit {
      */
     int requested() default 1;
 
+    /**
+     * 是否启用限流
+     * @return
+     */
+    boolean enable() default true;
+
 }

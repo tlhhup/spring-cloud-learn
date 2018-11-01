@@ -17,5 +17,7 @@ public class RequestRateLimitProperties {
     public static final String REDIS_SCRIPT_NAME = "requestRateLimiterScript";
 
     private String basePackage;
+    private String limitPattern="/**";//多级路径
+    private String excludePathPatterns;
 
 }

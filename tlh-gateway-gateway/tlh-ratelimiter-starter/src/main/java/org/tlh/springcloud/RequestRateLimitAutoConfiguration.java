@@ -27,9 +27,15 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scripting.support.ResourceScriptSource;
+import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.tlh.springcloud.entity.RateLimit;
 import org.tlh.springcloud.filter.RateKeyResolver;
 import org.tlh.springcloud.filter.RequestRateLimitFilter;
+import org.tlh.springcloud.filter.RequestRateLimitInterceptor;
 import org.tlh.springcloud.listener.InitRequestRateLimitListener;
 
 import javax.servlet.Filter;
@@ -47,7 +53,14 @@ import java.util.List;
 @EnableConfigurationProperties(RequestRateLimitProperties.class)
 public class RequestRateLimitAutoConfiguration {
 
+    @Autowired
+    private RequestRateLimitProperties requestRateLimitProperties;
+
+    /************ filter request rate limit start **************/
+
     @Bean
+    @ConditionalOnClass(Filter.class)
+    @ConditionalOnProperty(prefix = "tlh",name = "filter.enable",havingValue = "true")
     public InitRequestRateLimitListener initApiRateLimitListener(RedisTemplate<String,RateLimit> rateLimitRedisTemplate){
         InitRequestRateLimitListener rateLimitListener = new InitRequestRateLimitListener();
         rateLimitListener.setRateLimitRedisTemplate(rateLimitRedisTemplate);
@@ -55,6 +68,8 @@ public class RequestRateLimitAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnClass(Filter.class)
+    @ConditionalOnProperty(prefix = "tlh",name = "filter.enable",havingValue = "true")
     public RedisTemplate<String,RateLimit> rateLimitRedisTemplate(RedisConnectionFactory redisConnectionFactory){
         RedisTemplate<String,RateLimit> rateLimitRedisTemplate=new RedisTemplate<>();
         rateLimitRedisTemplate.setConnectionFactory(redisConnectionFactory);
@@ -76,6 +91,28 @@ public class RequestRateLimitAutoConfiguration {
         return rateLimitRedisTemplate;
     }
 
+    @Bean
+    @ConditionalOnClass(Filter.class)
+    @ConditionalOnProperty(prefix = "tlh",name = "filter.enable",havingValue = "true")
+    public FilterRegistrationBean<RequestRateLimitFilter> rateLimitFilterFilterRegistration(ReactiveRedisTemplate<String, String> reactiveRedisTemplate,
+                                                                                            @Qualifier(RequestRateLimitProperties.REDIS_SCRIPT_NAME) RedisScript<List<Long>> redisScript,
+                                                                                            @Autowired(required = false)RateKeyResolver rateKeyResolver,
+                                                                                            RedisTemplate<String,RateLimit> rateLimitRedisTemplate){
+        RequestRateLimitFilter requestRateLimitFilter=new RequestRateLimitFilter();
+        requestRateLimitFilter.setRateLimitOperations(rateLimitRedisTemplate.opsForValue());
+        requestRateLimitFilter.setReactiveRedisTemplate(reactiveRedisTemplate);
+        requestRateLimitFilter.setScript(redisScript);
+        requestRateLimitFilter.setKeyResolver(rateKeyResolver);
+
+        //register filter
+        FilterRegistrationBean<RequestRateLimitFilter> registrationBean=new FilterRegistrationBean<>();
+
+        registrationBean.setFilter(requestRateLimitFilter);
+        registrationBean.addUrlPatterns(requestRateLimitProperties.getLimitPattern());
+        return registrationBean;
+    }
+
+    /************ filter request rate limit end **************/
 
     @Bean
     @SuppressWarnings("unchecked")
@@ -101,25 +138,35 @@ public class RequestRateLimitAutoConfiguration {
                 serializationContext);
     }
 
-    @Bean
-    @ConditionalOnClass(Filter.class)
-    @ConditionalOnProperty(prefix = "tlh",name = "filter.enable",havingValue = "true")
-    public FilterRegistrationBean<RequestRateLimitFilter> rateLimitFilterFilterRegistration(ReactiveRedisTemplate<String, String> reactiveRedisTemplate,
-                                                                                            @Qualifier(RequestRateLimitProperties.REDIS_SCRIPT_NAME) RedisScript<List<Long>> redisScript,
-                                                                                            @Autowired(required = false)RateKeyResolver rateKeyResolver,
-                                                                                            RedisTemplate<String,RateLimit> rateLimitRedisTemplate){
-        RequestRateLimitFilter requestRateLimitFilter=new RequestRateLimitFilter();
-        requestRateLimitFilter.setRateLimitOperations(rateLimitRedisTemplate.opsForValue());
-        requestRateLimitFilter.setReactiveRedisTemplate(reactiveRedisTemplate);
-        requestRateLimitFilter.setScript(redisScript);
-        requestRateLimitFilter.setKeyResolver(rateKeyResolver);
+    @Configuration
+    @ConditionalOnClass(DispatcherServlet.class)
+    @ConditionalOnProperty(prefix = "tlh",name = "filter.enable",matchIfMissing = true)
+    public class RequestLimitMvcConfig implements WebMvcConfigurer{
 
-        //register filter
-        FilterRegistrationBean<RequestRateLimitFilter> registrationBean=new FilterRegistrationBean<>();
+        @Autowired
+        private ReactiveRedisTemplate<String, String> reactiveRedisTemplate;
 
-        registrationBean.setFilter(requestRateLimitFilter);
-        registrationBean.addUrlPatterns("/*");
-        return registrationBean;
+        @Autowired
+        @Qualifier(RequestRateLimitProperties.REDIS_SCRIPT_NAME)
+        private RedisScript<List<Long>> script;
+
+        @Autowired
+        private RequestRateLimitProperties requestRateLimitProperties;
+
+        @Override
+        public void addInterceptors(InterceptorRegistry registry) {
+            RequestRateLimitInterceptor requestRateLimitInterceptor=new RequestRateLimitInterceptor();
+            requestRateLimitInterceptor.setReactiveRedisTemplate(reactiveRedisTemplate);
+            requestRateLimitInterceptor.setScript(script);
+
+            //register interceptor
+            InterceptorRegistration interceptorRegistration = registry.addInterceptor(requestRateLimitInterceptor);
+            interceptorRegistration.addPathPatterns(requestRateLimitProperties.getLimitPattern());
+            if(StringUtils.hasText(requestRateLimitProperties.getExcludePathPatterns())){
+                interceptorRegistration.excludePathPatterns(requestRateLimitProperties.getExcludePathPatterns());
+            }
+        }
+
     }
 
 }

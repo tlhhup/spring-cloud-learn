@@ -18,5 +18,6 @@ public class RateLimit {
     private int replenishRate;
     private int burstCapacity;
     private int requested;
+    private boolean enable;
 
 }
