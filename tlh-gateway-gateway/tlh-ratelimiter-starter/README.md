@@ -16,3 +16,29 @@
 		    public String end(){
 		        return "end";
 		    }
+4. 自定义错误界面(根据状态码跳转到相应的界面)
+	1. 使用html作为展现，将页面放置在resources/publib/error(springboot中的静态资源目录即可)下,结构如下
+
+			src/
+			 +- main/
+			     +- java/
+			     |   + <source code>
+			     +- resources/
+			         +- public/				# 放置在静态资源目录
+			             +- error/
+			             |   +- 404.html	# 定义404code的界面
+			             +- <other public assets>  
+ 
+ 	2. 使用模版引擎的配置
+
+ 			src/
+			 +- main/
+			     +- java/
+			     |   + <source code>
+			     +- resources/
+			         +- templates/			# 放置在模版目录
+			             +- error/
+			             |   +- 5xx.ftl
+			             +- <other templates>   
+			             
+ 	3. 自定义实现ErrorViewResolver接口，其默认实现类DefaultErrorViewResolver已经实现了1，2流程的逻辑
