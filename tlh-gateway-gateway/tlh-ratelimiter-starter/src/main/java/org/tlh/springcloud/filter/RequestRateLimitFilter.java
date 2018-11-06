@@ -1,7 +1,7 @@
 package org.tlh.springcloud.filter;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.HashOperations;
 import org.tlh.springcloud.RequestRateLimitProperties;
 import org.tlh.springcloud.entity.RateLimit;
 
@@ -20,7 +20,8 @@ public class RequestRateLimitFilter extends BaseRequestRateLimit implements Filt
 
     private RateKeyResolver defaultKeyResolver;
     private RateKeyResolver keyResolver;
-    private ValueOperations<String, RateLimit> rateLimitOperations;
+    private HashOperations<String,String, RateLimit> rateLimitOperations;
+    private String redisKey;
 
     public RequestRateLimitFilter() {
         this.defaultKeyResolver = new DefaultRateKeyResolver();
@@ -41,8 +42,7 @@ public class RequestRateLimitFilter extends BaseRequestRateLimit implements Filt
             String uri = request.getRequestURI().substring(servletPath.length());
             String tokenKey=this.keyResolver!=null?keyResolver.resolve(uri):this.defaultKeyResolver.resolve(uri);
             //获取限流配置
-            RateLimit rateLimit = this.rateLimitOperations.get(tokenKey);
-            rateLimit.setTokenKey(tokenKey);
+            RateLimit rateLimit = this.rateLimitOperations.get(redisKey, tokenKey);
             //判断是否限流
             if(!isAllowed(rateLimit)){
                 ((HttpServletResponse) servletResponse).setStatus(RequestRateLimitProperties.TO_MANY_REQUEST);
@@ -59,11 +59,15 @@ public class RequestRateLimitFilter extends BaseRequestRateLimit implements Filt
         log.info("RequestRateLimitFilter--->destroy");
     }
 
-    public void setRateLimitOperations(ValueOperations<String, RateLimit> rateLimitOperations) {
+    public void setRateLimitOperations(HashOperations<String,String, RateLimit> rateLimitOperations) {
         this.rateLimitOperations = rateLimitOperations;
     }
 
     public void setKeyResolver(RateKeyResolver keyResolver) {
         this.keyResolver = keyResolver;
+    }
+
+    public void setRedisKey(String redisKey) {
+        this.redisKey = redisKey;
     }
 }

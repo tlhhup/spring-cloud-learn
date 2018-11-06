@@ -13,11 +13,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class RequestRateLimitProperties {
 
     public static final int TO_MANY_REQUEST = 429;
-    public static final String RATE_PREFIX = "rate.";
     public static final String REDIS_SCRIPT_NAME = "requestRateLimiterScript";
+    public static final String DEFAULT_PATTERN = "/**";//多级路径
+    private static final String RATE_PREFIX = "rate";
+
 
     private String basePackage;
-    private String limitPattern="/**";//多级路径
+    private String limitPattern = DEFAULT_PATTERN;
     private String excludePathPatterns;
+    private String redisKey = RATE_PREFIX;
 
 }

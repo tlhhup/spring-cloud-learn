@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -99,16 +100,20 @@ public class RequestRateLimitAutoConfiguration {
                                                                                             @Autowired(required = false)RateKeyResolver rateKeyResolver,
                                                                                             RedisTemplate<String,RateLimit> rateLimitRedisTemplate){
         RequestRateLimitFilter requestRateLimitFilter=new RequestRateLimitFilter();
-        requestRateLimitFilter.setRateLimitOperations(rateLimitRedisTemplate.opsForValue());
+        requestRateLimitFilter.setRateLimitOperations(rateLimitRedisTemplate.opsForHash());
         requestRateLimitFilter.setReactiveRedisTemplate(reactiveRedisTemplate);
         requestRateLimitFilter.setScript(redisScript);
         requestRateLimitFilter.setKeyResolver(rateKeyResolver);
+        requestRateLimitFilter.setRedisKey(this.requestRateLimitProperties.getRedisKey());
 
         //register filter
         FilterRegistrationBean<RequestRateLimitFilter> registrationBean=new FilterRegistrationBean<>();
 
         registrationBean.setFilter(requestRateLimitFilter);
-        registrationBean.addUrlPatterns(requestRateLimitProperties.getLimitPattern());
+        //过滤默认的Spring mvc的多级路径
+        if(!RequestRateLimitProperties.DEFAULT_PATTERN.equals(requestRateLimitProperties.getLimitPattern())) {
+            registrationBean.addUrlPatterns(requestRateLimitProperties.getLimitPattern());
+        }
         return registrationBean;
     }
 
@@ -140,7 +145,7 @@ public class RequestRateLimitAutoConfiguration {
 
     @Configuration
     @ConditionalOnClass(DispatcherServlet.class)
-    @ConditionalOnProperty(prefix = "tlh",name = "filter.enable",matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "tlh",name = "filter.enable",matchIfMissing = true,havingValue = "false")
     public class RequestLimitMvcConfig implements WebMvcConfigurer{
 
         @Autowired

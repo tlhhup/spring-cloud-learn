@@ -1,6 +1,6 @@
 package org.tlh.springcloud.listener;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
@@ -15,10 +15,8 @@ import org.tlh.springcloud.annotation.RequestRateLimit;
 import org.tlh.springcloud.entity.RateLimit;
 
 import java.lang.reflect.Method;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
-
-import static org.tlh.springcloud.RequestRateLimitProperties.RATE_PREFIX;
 
 /**
  * Created by 离歌笑tlh/hu ping on 18/10/21
@@ -40,7 +38,7 @@ public class InitRequestRateLimitListener implements ApplicationListener<Context
 
     private void initRateLimitApi() {
         log.info("InitRequestRateLimitListener---->scanning rateLimit API");
-        List<RateLimit> rateLimits = Lists.newArrayList();
+        Map<String,RateLimit> rateLimits = Maps.newHashMap();
         RateLimit rateLimit = null;
         //构建配置
         ConfigurationBuilder configurationBuilder = new ConfigurationBuilder()//
@@ -57,17 +55,14 @@ public class InitRequestRateLimitListener implements ApplicationListener<Context
                     if(StringUtils.hasText(annotation.tokenKey())) {
                         rateLimit = new RateLimit(annotation.tokenKey(), annotation.replenishRate(), //
                                 annotation.burstCapacity(), annotation.requested(),annotation.enable());
-                        rateLimits.add(rateLimit);
+                        rateLimits.put(rateLimit.getTokenKey(),rateLimit);
                         rateLimit = null;
                     }
                 }
             }
         }
-        // todo 优化存储方式
         if(!rateLimits.isEmpty()){
-            for(RateLimit limit:rateLimits){
-                this.rateLimitRedisTemplate.opsForValue().set(RATE_PREFIX.concat(limit.getTokenKey()),limit);
-            }
+            this.rateLimitRedisTemplate.opsForHash().putAll(requestRateLimitProperties.getRedisKey(),rateLimits);
         }
         log.info("InitRequestRateLimitListener---->end;Api:{}", rateLimits.size());
     }
