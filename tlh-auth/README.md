@@ -1,4 +1,4 @@
-###基于JWT的认证中心
+### 基于JWT的认证中心
 1. 添加依赖
 
 		<dependencies>
@@ -182,7 +182,7 @@
 		
 		}  
 		
-###服务提供方校验token
+### 服务提供方校验token
 通过在服务提供方定义spring mvc的拦截器处理
 
 1. 编写拦截器
@@ -237,7 +237,7 @@
 		    }
 		}
 		
-###服务消费端通过resttemplate拦截器添加认证头信息
+### 服务消费端通过resttemplate拦截器添加认证头信息
 1. 定义拦截器
 	
 		@Component
@@ -272,7 +272,7 @@
 	        return restTemplate;
 	    }
 	    
-###服务消费端通过feign拦截器添加认证头信息
+### 服务消费端通过feign拦截器添加认证头信息
 1. 编写拦截器
 	
 		public class FeignAuthRequestInterceptor implements RequestInterceptor {
@@ -313,7 +313,7 @@
 		
 		}
 
-###zuul网关中传递token到后端服务
+### zuul网关中传递token到后端服务
 1. 通过pre类型的过滤器处理
 
 		@Component
@@ -345,7 +345,83 @@
 		    }
 		}
 		
-###token的获取
+### token的获取
 通过定时任务调用认证中心获取token并缓存到本地	
+### 参数校验自动装配源码分析
+1. 为啥自定义参数校验的配置文件名称必须为：ValidationMessages
+	1. 配置本地校验工厂，生成校验器
+
+			@Bean
+			@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
+			@ConditionalOnMissingBean(Validator.class)
+			public static LocalValidatorFactoryBean defaultValidator() {
+				//创建本地校验工厂对象
+				LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
+				//设置校验失败之后错误信息的解析，及将对应的key转化为配置文件中的value,该方法将决定加载的配置文件
+				MessageInterpolatorFactory interpolatorFactory = new MessageInterpolatorFactory();
+				factoryBean.setMessageInterpolator(interpolatorFactory.getObject());
+				return factoryBean;
+			}
+	2. message解析器工厂对象 
+
+			@Override
+			public MessageInterpolator getObject() throws BeansException {
+				try {
+					return Validation.byDefaultProvider().configure()
+							.getDefaultMessageInterpolator();
+				}
+				catch (ValidationException ex) {
+					MessageInterpolator fallback = getFallback();
+					if (fallback != null) {
+						return fallback;
+					}
+					throw ex;
+				}
+			}
+	3. 获取默认的message解析器，指定校验失败文件名称(org.hibernate.validator.internal.engine.ConfigurationImpl) 
+
+			@Override
+			public final MessageInterpolator getDefaultMessageInterpolator() {
+				if ( defaultMessageInterpolator == null ) {
+					// 获取默认解析器
+					defaultMessageInterpolator = new ResourceBundleMessageInterpolator( defaultResourceBundleLocator );
+				}
+		
+				return defaultMessageInterpolator;
+			}
+			
+			
+			private ConfigurationImpl() {
+				.....
+				// USER_VALIDATION_MESSAGES = "ValidationMessages"; 默认配置文件的名称
+				this.defaultResourceBundleLocator = new PlatformResourceBundleLocator(
+						ResourceBundleMessageInterpolator.USER_VALIDATION_MESSAGES
+				);
+				.....
+			}
+2. 如果修改为自定义的文件名称
+	1. 通过以上的源码分析，可知最终将key转化为配置文件中的value是通过messageinterpolator来实现的，则只需要修改其加载的配置文件即可
+	2. 自定义引用自己配置文件的校验工厂
+
+			@Configuration
+			public class ValidationConfig {
+			
+			    @Autowired
+			    private MessageSource messageSource;
+			
+			    @Bean
+			    public LocalValidatorFactoryBean defaultValidator() {
+			        LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
+			        // 设置校验的messagesource即可
+			        factoryBean.setValidationMessageSource(messageSource);
+			        return factoryBean;
+			    }
+			
+			} 
+			
+			//在该方法中实则也是将messagesource对象会转化到hibernate中的messageinterpolator对象
+			public void setValidationMessageSource(MessageSource messageSource) {
+				this.messageInterpolator = HibernateValidatorDelegate.buildMessageInterpolator(messageSource);
+			}
 
 
