@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="chapter-2" />
+        <module name="gateway-swagger-butler-stater" />
         <module name="tlh-auth" />
         <module name="tlh-config-server" />
         <module name="tlh-config-server-db" />
@@ -37,6 +38,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="chapter-2" target="1.8" />
+      <module name="gateway-swagger-butler-stater" target="1.8" />
       <module name="spring-cloud-learn" target="1.8" />
       <module name="tlh-auth" target="1.8" />
       <module name="tlh-config-server" target="1.8" />

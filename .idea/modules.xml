@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/chapter-2/chapter-2.iml" filepath="$PROJECT_DIR$/chapter-2/chapter-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tlh-gateway-gateway/gateway-swagger-butler-stater/gateway-swagger-butler-stater.iml" filepath="$PROJECT_DIR$/tlh-gateway-gateway/gateway-swagger-butler-stater/gateway-swagger-butler-stater.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-cloud-learn.iml" filepath="$PROJECT_DIR$/spring-cloud-learn.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-auth/tlh-auth.iml" filepath="$PROJECT_DIR$/tlh-auth/tlh-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/tlh-config-server/tlh-config-server.iml" filepath="$PROJECT_DIR$/tlh-config-server/tlh-config-server.iml" />
