@@ -1,0 +1,37 @@
+server:
+  port: 8096
+spring:
+  application:
+    name: tlh-gateway-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: exam_route
+          uri: lb://tlh-service-exam # 通过ribbon进行负载
+          predicates:
+          - Path=/exam/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10  # 每秒生成的令牌
+                redis-rate-limiter.burstCapacity: 20  # 桶大小
+                key-resolver: "#{@hostNameKeyResolver}"
+        - id: user_route
+          uri: lb://tlh-service-user
+          predicates:
+          - Path=/user/**
+        - id: local_route     # 路由到但前网关的handler
+          uri: forward:/auth/login
+          predicates:
+          - Path=/login
+          - Method=GET
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    appname: tlh-gateway-gateway
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5

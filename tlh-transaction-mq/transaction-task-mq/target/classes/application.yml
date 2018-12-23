@@ -1,0 +1,31 @@
+server:
+  port: 8094
+spring:
+  application:
+    name: tlh-transaction-task-mq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: transaction-mq
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+    timeout: 10000
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss # 处理feign对date类型数据的格式化
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+  instance:
+    appname: tlh-transaction-task-mq
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5
+feign:
+  hystrix:
+    enabled: true # 开启hystrix支持

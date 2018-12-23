@@ -11,8 +11,8 @@
 		1. DispatcherHandler：入口
 		2. HandlerMapping：处理器映射器
 		3. HandlerAdapter：处理器适配器
-	4. 执行流程
-		1. 由处理器适配器handlermapping通过断言对client的请求进行匹配得到handler，在交由handleradapter进行执行，经过一些列的过滤器最终得到一个proxy request对象，最后在发送给后端真实的service(及uri定义的目的地址)   	
+	4. **执行流程**
+		1. 由处理器适配器handlermapping通过断言对client的请求进行匹配得到handler，在交由handleradapter进行执行，经过一些列的**过滤器**(按过滤器的顺序执行)最终得到一个proxy request对象，最后在发送给后端真实的service(及uri定义的目的地址)   	
 2. Predicate(多个断言可以组合使用，其逻辑关系为and)
 	1. After
 
@@ -180,6 +180,174 @@
 	1. tokens_key用于模拟令牌桶，其存储桶中的可用令牌数
 	2. 通过计算上次和这次的写入时间差*速率=新流入桶中的令牌
 	3. 当前桶中的令牌大于请求需要的令牌则表示allowed，允许请求到达后端服务
+6. 自定义前置和后置过滤器
+	1. 前置过滤器
+
+			public class PreGatewayFilterFactory extends AbstractGatewayFilterFactory<PreGatewayFilterFactory.Config> {
+			
+				public PreGatewayFilterFactory() {
+					// 必须强制注入配置类的class对象，否则是否的是默认的object作为配置类
+					super(Config.class);
+				}
+			
+				@Override
+				public GatewayFilter apply(Config config) {
+					// grab configuration from Config object
+					return (exchange, chain) -> {
+			            //If you want to build a "pre" filter you need to manipulate the
+			            //request before calling change.filter
+			            ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
+			            //use builder to manipulate the request
+			            return chain.filter(exchange.mutate().request(request).build());
+					};
+				}
+			
+				public static class Config {
+			        //Put the configuration properties for your filter here
+				}
+	
+			}
+	2. 后置过滤器 	
+
+			public class PostGatewayFilterFactory extends AbstractGatewayFilterFactory<PostGatewayFilterFactory.Config> {
+			
+				public PostGatewayFilterFactory() {
+					super(Config.class);
+				}
+			
+				@Override
+				public GatewayFilter apply(Config config) {
+					// grab configuration from Config object
+					return (exchange, chain) -> {
+						return chain.filter(exchange).then(Mono.fromRunnable(() -> {
+							ServerHttpResponse response = exchange.getResponse();
+							//Manipulate the response in some way
+						}));
+					};
+				}
+			
+				public static class Config {
+			        //Put the configuration properties for your filter here
+				}
+	
+			}
+7. 获取后端服务的响应，通过定义全局过滤器实现，order的值越小对应pre类型就越先执行，同时对应post类型就越后执行
+
+		@Slf4j
+		@Component
+		public class WrapperResponseGlobalFilter implements GlobalFilter, Ordered {
+		
+		    @Override
+		    public int getOrder() {
+		        // -1 is response write filter, must be called before that
+		        return -2;
+		    }
+		
+		    @Override
+		    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+		        ServerHttpResponse originalResponse = exchange.getResponse();
+		        DataBufferFactory bufferFactory = originalResponse.bufferFactory();
+		        ServerHttpResponseDecorator decoratedResponse = new ServerHttpResponseDecorator(originalResponse) {
+		            @Override
+		            public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
+		                if (body instanceof Flux) {
+		                    Flux<? extends DataBuffer> fluxBody = (Flux<? extends DataBuffer>) body;
+		                    return super.writeWith(fluxBody.map(dataBuffer -> {
+		                        // probably should reuse buffers
+		                        byte[] content = new byte[dataBuffer.readableByteCount()];
+		                        dataBuffer.read(content);
+		                        //释放掉内存
+		                        DataBufferUtils.release(dataBuffer);
+		                        String s = new String(content, Charset.forName("UTF-8"));
+		                        log.info(s);
+		                        //TODO，s就是response的值，想修改、查看就随意而为了
+		                        byte[] uppedContent = new String(content, Charset.forName("UTF-8")).getBytes();
+		                        return bufferFactory.wrap(uppedContent);
+		                    }));
+		                }
+		                // if body is not a flux. never got there.
+		                return super.writeWith(body);
+		            }
+		        };
+		        // replace response with decorator
+		        return chain.filter(exchange.mutate().response(decoratedResponse).build());
+		    }
+		
+		}
+8. 跨域处理
+
+	在前后分离开发中，前端主要透过官网来访问后端服务，而网关也一般部署在一台或多台不同于前端的物理机中，这个时候就会出现跨域的问题。在gateway中提供了两种方式来处理改问题，一个基础yml配置的方式(方便、灵活)，一种是基于WebFilter代码的方式来处理。
+	1. 配置文件处理(该配置方式**对路由后端服务的跨域有效**，对gateway本身的controller无效)
+
+		通过GlobalCorsProperties配置属性来完成跨域的配置，处理一个URL地址和一个CorsConfiguration之间的映射。其逻辑处理在org.springframework.web.cors.reactive.DefaultCorsProcessor#handleInternal该方法中完成。
+	
+			spring:
+			  cloud:
+			    gateway:
+			      globalcors:
+			        cors-configurations:
+			          '[/**]':
+			            allowedOrigins: "http://localhost:9527" # 前端服务器域名地址
+			            allowedHeaders: "*"
+			            allowedMethods:
+			              - GET
+			              - DELETE
+			              - POST
+			              - PUT
+			              - OPTIONS		# 该请求用于获取服务器支持的HTTP请求方式，为跨域请求的预检请求，其目的是为了判断实际发送的请求是否是安全的
+	2. 配置类处理(过滤器) :对路由到后端的服务和gateway
+本身的controller都有效
+			@Configuration
+			public class GatewayConfig {
+			
+			    private static final String ALL = "*";
+			    private static final String MAX_AGE = "18000L";
+			
+			
+			    @Bean
+			    public WebFilter corsFilter() {
+			        return (ServerWebExchange ctx, WebFilterChain chain) -> {
+			            ServerHttpRequest request = ctx.getRequest();
+			            if (!CorsUtils.isCorsRequest(request)) {
+			                return chain.filter(ctx);
+			            }
+			            HttpHeaders requestHeaders = request.getHeaders();
+			            ServerHttpResponse response = ctx.getResponse();
+			            HttpMethod requestMethod = requestHeaders.getAccessControlRequestMethod();
+			            HttpHeaders headers = response.getHeaders();
+			            headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, requestHeaders.getOrigin());
+			            headers.addAll(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, requestHeaders.getAccessControlRequestHeaders());
+			            if (requestMethod != null) {
+			                headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, requestMethod.name());
+			            }
+			            headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+			            headers.add(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, ALL);
+			            headers.add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, MAX_AGE);
+			            if (request.getMethod() == HttpMethod.OPTIONS) {
+			                response.setStatusCode(HttpStatus.OK);
+			                return Mono.empty();
+			            }
+			            return chain.filter(ctx);
+			        };
+			    }
+	
+			}
+	3. gateway本服务的跨域配置(参照WebFlux的官方文档):解决在网关处处理登出的逻辑
+
+			@Configuration
+		    public class WebConfig implements WebFluxConfigurer {
+		
+		        @Override
+		        public void addCorsMappings(CorsRegistry registry) {
+		
+		            registry.addMapping("/**")
+		                    .allowedOrigins("http://localhost:9527")
+		                    .allowedHeaders("*")
+		                    .allowedMethods("PUT", "DELETE","DELETE","OPTIONS","POST");
+		        }
+		    }
+	4. **综上**：如果需要实现网关跨域的完全配置，需要1+3组合或者直接采用2的方式(推荐)	
+	
 
 ### 自定义API级别限流
 1. 思路

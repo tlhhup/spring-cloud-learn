@@ -1,0 +1,31 @@
+server:
+  port: 8095
+spring:
+  application:
+    name: tlh-transaction-substitution
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: org.gjt.mm.mysql.Driver
+    type: org.springframework.jdbc.datasource.DriverManagerDataSource
+    url: jdbc:mysql:///transaction_substitution
+  rabbitmq:
+    virtual-host: transaction-mq
+  jpa:
+    hibernate:
+      ddl-auto: update
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+  instance:
+    appname: tlh-transaction-substitution
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5
+feign:
+  hystrix:
+    enabled: true # 开启hystrix支持
