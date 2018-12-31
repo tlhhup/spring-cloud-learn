@@ -346,8 +346,238 @@
 		                    .allowedMethods("PUT", "DELETE","DELETE","OPTIONS","POST");
 		        }
 		    }
-	4. **综上**：如果需要实现网关跨域的完全配置，需要1+3组合或者直接采用2的方式(推荐)	
-	
+	4. **综上**：如果需要实现网关跨域的完全配置，需要1+3组合或者直接采用2的方式(推荐)
+9. 全局异常处理及**gateway执行流程**
+	1. spring cloud gateway主要通过webfulex和netty构成，其入口为**DispatcherHandler**对象的handle方法，其核心的组件有
+		1. handlermapping：类似Spring mvc中的处理器映射器
+		2. handleradapter：类似Spring mvc中的处理器适配器
+		3. HandlerResultHandler：处理器执行的结果，类似Spring mvc中的mv对象 
+		4. WebExceptionHandler：异常处理器，类似Spring mvc中的HandlerExceptionResolver对象
+	2. 执行流程(和Springmvc的执行流程相似)及源码分析
+		1. handle方法
+		
+				public Mono<Void> handle(ServerWebExchange exchange) {
+					if (logger.isDebugEnabled()) {
+						ServerHttpRequest request = exchange.getRequest();
+						logger.debug("Processing " + request.getMethodValue() + " request for [" + request.getURI() + "]");
+					}
+					if (this.handlerMappings == null) {
+						return Mono.error(HANDLER_NOT_FOUND_EXCEPTION);
+					}
+					return Flux.fromIterable(this.handlerMappings)
+							//1.由处理器映射器得到处理器
+							.concatMap(mapping -> mapping.getHandler(exchange))
+							.next()
+							.switchIfEmpty(Mono.error(HANDLER_NOT_FOUND_EXCEPTION))
+							//2.通过处理器适配器调用处理器
+							.flatMap(handler -> invokeHandler(exchange, handler))
+							//3.结果处理，及响应
+							.flatMap(result -> handleResult(exchange, result));
+				} 		 	
+		2. 处理器调用：invokeHandler方法
+
+				private Mono<HandlerResult> invokeHandler(ServerWebExchange exchange, Object handler) {
+					if (this.handlerAdapters != null) {
+						for (HandlerAdapter handlerAdapter : this.handlerAdapters) {
+							//1.遍历得到处理器适配器
+							if (handlerAdapter.supports(handler)) {
+								//2.完成处理器的调用
+								return handlerAdapter.handle(exchange, handler);
+							}
+						}
+					}
+					return Mono.error(new IllegalStateException("No HandlerAdapter: " + handler));
+				}
+		3. 如果调用的是后端的服务(及包装为org.springframework.cloud.gateway.handler.FilteringWebHandler对象)将交由SimpleHandlerAdapter处理
+
+				@Override
+				public Mono<HandlerResult> handle(ServerWebExchange exchange, Object handler) {
+					WebHandler webHandler = (WebHandler) handler;
+					Mono<Void> mono = webHandler.handle(exchange);
+					return mono.then(Mono.empty());
+				}
+		4. FilteringWebHandler对象的handle方法
+
+				@Override
+				public Mono<Void> handle(ServerWebExchange exchange) {
+					//1.获取在调用后端的路由
+					Route route = exchange.getRequiredAttribute(GATEWAY_ROUTE_ATTR);
+					List<GatewayFilter> gatewayFilters = route.getFilters();
+					//2.注入过滤器，其请求和各种预处理都是在过滤器中完成的
+					List<GatewayFilter> combined = new ArrayList<>(this.globalFilters);
+					combined.addAll(gatewayFilters);
+					//TODO: needed or cached?
+					AnnotationAwareOrderComparator.sort(combined);
+			
+					logger.debug("Sorted gatewayFilterFactories: "+ combined);
+					//
+					return new DefaultGatewayFilterChain(combined).filter(exchange);
+				}
+		5. DefaultGatewayFilterChain(FilteringWebHandler中的内部类)的方法filter方法
+
+				@Override
+				public Mono<Void> filter(ServerWebExchange exchange) {
+					return Mono.defer(() -> {
+						if (this.index < filters.size()) {
+							//1.遍历过滤器
+							GatewayFilter filter = filters.get(this.index);
+							DefaultGatewayFilterChain chain = new DefaultGatewayFilterChain(this, this.index + 1);
+							//2.调用过滤器方法，在LoadBalancerClientFilter完成负载均衡处理，在NettyRoutingFilter中完成请求的发送
+							return filter.filter(exchange, chain);
+						} else {
+							return Mono.empty(); // complete
+						}
+					});
+				}
+		6. LoadBalancerClientFilter的filter方法
+
+				@Override
+				public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+					//1.得到请求路径
+					URI url = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
+					String schemePrefix = exchange.getAttribute(GATEWAY_SCHEME_PREFIX_ATTR);
+					if (url == null || (!"lb".equals(url.getScheme()) && !"lb".equals(schemePrefix))) {
+						return chain.filter(exchange);
+					}
+					//preserve the original url
+					addOriginalRequestUrl(exchange, url);
+			
+					log.trace("LoadBalancerClientFilter url before: " + url);
+					//2.得到真实访问的后端服务的实例
+					final ServiceInstance instance = loadBalancer.choose(url.getHost());
+			
+					if (instance == null) {
+						throw new NotFoundException("Unable to find instance for " + url.getHost());
+					}
+			
+					URI uri = exchange.getRequest().getURI();
+			
+					// if the `lb:<scheme>` mechanism was used, use `<scheme>` as the default,
+					// if the loadbalancer doesn't provide one.
+					String overrideScheme = null;
+					if (schemePrefix != null) {
+						overrideScheme = url.getScheme();
+					}
+					//3.构建真实的请求地址
+					URI requestUrl = loadBalancer.reconstructURI(new DelegatingServiceInstance(instance, overrideScheme), uri);
+			
+					log.trace("LoadBalancerClientFilter url chosen: " + requestUrl);
+					exchange.getAttributes().put(GATEWAY_REQUEST_URL_ATTR, requestUrl);
+					//3.继续执行，将发送请求
+					return chain.filter(exchange);
+				}
+		7. NettyRoutingFilter的filter方法
+
+				@Override
+				public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+					....
+					//发送请求
+					Mono<HttpClientResponse> responseMono = this.httpClient.request(method, url, req -> {
+						final HttpClientRequest proxyRequest = req.options(NettyPipeline.SendOptions::flushOnEach)
+								.headers(httpHeaders)
+								.chunkedTransfer(chunkedTransfer)
+								.failOnServerError(false)
+								.failOnClientError(false);
+			
+						if (preserveHost) {
+							String host = request.getHeaders().getFirst(HttpHeaders.HOST);
+							proxyRequest.header(HttpHeaders.HOST, host);
+						}
+			
+						return proxyRequest.sendHeaders() //I shouldn't need this
+								.send(request.getBody().map(dataBuffer ->
+										((NettyDataBuffer) dataBuffer).getNativeBuffer()));
+					});
+			
+					if (properties.getResponseTimeout() != null) {
+						responseMono.timeout(properties.getResponseTimeout(),
+								Mono.error(new TimeoutException("Response took longer than timeout: " +
+										properties.getResponseTimeout())));
+					}
+					//处理响应，设置响应头和状态信息
+					return responseMono.doOnNext(res -> {
+						ServerHttpResponse response = exchange.getResponse();
+						// put headers and status so filters can modify the response
+						HttpHeaders headers = new HttpHeaders();
+			
+						res.responseHeaders().forEach(entry -> headers.add(entry.getKey(), entry.getValue()));
+			
+						if (headers.getContentType() != null) {
+							exchange.getAttributes().put(ORIGINAL_RESPONSE_CONTENT_TYPE_ATTR, headers.getContentType());
+						}
+			
+						HttpHeaders filteredResponseHeaders = HttpHeadersFilter.filter(
+								this.headersFilters.getIfAvailable(), headers, exchange, Type.RESPONSE);
+						
+						response.getHeaders().putAll(filteredResponseHeaders);
+						HttpStatus status = HttpStatus.resolve(res.status().code());
+						if (status != null) {
+							response.setStatusCode(status);
+						} else if (response instanceof AbstractServerHttpResponse) {
+							// https://jira.spring.io/browse/SPR-16748
+							((AbstractServerHttpResponse) response).setStatusCodeValue(res.status().code());
+						} else {
+							throw new IllegalStateException("Unable to set status code on response: " +res.status().code()+", "+response.getClass());
+						}
+			
+						// Defer committing the response until all route filters have run
+						// Put client response as ServerWebExchange attribute and write response later NettyWriteResponseFilter
+						exchange.getAttributes().put(CLIENT_RESPONSE_ATTR, res);
+					}).then(chain.filter(exchange));
+		}
+	3. [异常处理](https://juejin.im/post/5bbad1405188255c4a7137e1)
+		1. 异常处理的配置类为ErrorWebFluxAutoConfiguration，从其配置类可以看到默认使用的是DefaultErrorWebExceptionHandler异常处理器(采用html展现异常)，如果需要自定义则继承该类重写特定的方法即可
+
+				@Bean
+				@ConditionalOnMissingBean(value = ErrorWebExceptionHandler.class, search = SearchStrategy.CURRENT)
+				@Order(-1)
+				public ErrorWebExceptionHandler errorWebExceptionHandler(
+						ErrorAttributes errorAttributes) {
+					DefaultErrorWebExceptionHandler exceptionHandler = new DefaultErrorWebExceptionHandler(
+							errorAttributes, this.resourceProperties,
+							this.serverProperties.getError(), this.applicationContext);
+					exceptionHandler.setViewResolvers(this.viewResolvers);
+					exceptionHandler.setMessageWriters(this.serverCodecConfigurer.getWriters());
+					exceptionHandler.setMessageReaders(this.serverCodecConfigurer.getReaders());
+					return exceptionHandler;
+				}
+		2. 自定义返回json数据格式的异常处理器，重写一下三个方法即可
+
+				/**
+			     * 获取异常属性
+			     */
+			    @Override
+			    protected Map<String, Object> getErrorAttributes(ServerRequest request, boolean includeStackTrace) {
+			        int code = 500;
+			        Throwable error = super.getError(request);
+			        if (error instanceof NotFoundException) {
+			            code = 404;
+			        }
+			        if (error instanceof IllegalRequestException){
+			            code=((IllegalRequestException) error).getCode();
+			        }
+			        return response(code, this.buildMessage(request, error));
+			    }
+			
+			    /**
+			     * 指定响应处理方法为JSON处理的方法
+			     * @param errorAttributes
+			     */
+			    @Override
+			    protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
+			        return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
+			    }
+			
+			    /**
+			     * 根据code获取对应的HttpStatus
+			     * @param errorAttributes
+			     */
+			    @Override
+			    protected HttpStatus getHttpStatus(Map<String, Object> errorAttributes) {
+			        int statusCode = (int) errorAttributes.get("code");
+			        return HttpStatus.valueOf(statusCode);
+			    }
+	    3. 配置异常处理器，完全模仿ErrorWebFluxAutoConfiguration异常处理器的配置即可
 
 ### 自定义API级别限流
 1. 思路
