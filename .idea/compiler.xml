@@ -52,7 +52,7 @@
       <module name="tlh-hystrix-dashboard" target="1.8" />
       <module name="tlh-ratelimiter-starter" target="1.8" />
       <module name="tlh-scc-config-admin" target="1.6" />
-      <module name="tlh-scc-config-admin-db" target="1.6" />
+      <module name="tlh-scc-config-admin-db" target="1.8" />
       <module name="tlh-scc-config-client" target="1.8" />
       <module name="tlh-scc-ui-server" target="1.6" />
       <module name="tlh-service-a" target="1.8" />
