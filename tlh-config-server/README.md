@@ -182,6 +182,9 @@
 	3. 触发端点 
 		1. 所有节点：[/actuator/bus-refresh],methods=[POST]
 		2. 指定节点：[/actuator/bus-refresh/{destination}],methods=[POST] 
+			1. destination：由app:index:id构成，可参考官网稳定说明
+			2. destination：如果是服务名称，则会触发所有实例的配置刷新
+			3. destination:port(及index)可以刷新特定实例的配置信息 	
 	4. 说明
 		1. 采用的是本地的rabbitmq，所以才用默认配置即可 
 		2. 在sever端出发bus-refresh之后，会通过消息总线将事件发送出去，从而调用client的refresh来达到配置的自动刷新
