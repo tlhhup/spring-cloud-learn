@@ -22,6 +22,10 @@ spring:
     username: root
     password: 123456
     type: org.springframework.jdbc.datasource.DriverManagerDataSource
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 org:
   dromara:
     hmily:
