@@ -10,6 +10,103 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tlh-zipkin-server</artifactId>
+    <properties>
+        <zipkin.version>2.11.12</zipkin.version>
+        <xnio.version>3.6.5.Final</xnio.version>
+        <jboss-threads.version>2.3.2.Final</jboss-threads.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Use log4j 2 instead of SLF4J to allow log4j 1.2 used by Kafka 0.8 to still work -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <!-- reduces http transport latency -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.undertow</groupId>
+                    <artifactId>undertow-websockets-jsr</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- BEGIN WORKAROUNDS FOR UNDERTOW-1355 -->
+        <dependency>
+            <groupId>org.jboss.xnio</groupId>
+            <artifactId>xnio-api</artifactId>
+            <version>${xnio.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.threads</groupId>
+                    <artifactId>jboss-threads</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.threads</groupId>
+            <artifactId>jboss-threads</artifactId>
+            <version>${jboss-threads.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.xnio</groupId>
+            <artifactId>xnio-nio</artifactId>
+            <version>${xnio.version}</version>
+        </dependency>
+        <!-- END WORKAROUNDS FOR UNDERTOW-1355 -->
+
+        <!-- zipkin requires exporting /health endpoint -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-server</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.zipkin.zipkin2</groupId>
+            <artifactId>zipkin</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.zipkin.zipkin2</groupId>
+            <artifactId>zipkin-collector</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+
+        <!-- Static content for the web UI -->
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-ui</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>

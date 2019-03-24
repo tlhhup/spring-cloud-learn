@@ -1,0 +1,38 @@
+server:
+  port: 10011
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+  instance:
+    appname: tlh-hmily-provider
+    hostname: tlh-hmily-provider
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 5 # 发送给注册中心的心跳频率
+    lease-expiration-duration-in-seconds: 5 # 心跳间隔的超时时间，如果没有收到则移除该instance
+    prefer-ip-address: true
+spring:
+  application:
+    name: tlh-hmily-provider
+  datasource:
+    url: jdbc:mysql:///hmily_provider
+    driver-class-name: org.gjt.mm.mysql.Driver
+    username: root
+    password: 123456
+    type: org.springframework.jdbc.datasource.DriverManagerDataSource
+org:
+  dromara:
+    hmily:
+      serializer: kryo
+      recoverDelayTime: 128 # 定时任务延迟时间
+      retryMax: 30          # 最大重复次数
+      scheduledDelay: 128
+      scheduledThreadMax:  10
+      repositorySupport: db # 事务日志存储
+      hmilyDbConfig:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql:///hmily_tcc
+        username: root
+        password: 123456

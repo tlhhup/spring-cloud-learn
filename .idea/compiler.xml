@@ -16,6 +16,8 @@
         <module name="tlh-eureka-server-noauth" />
         <module name="tlh-gateway" />
         <module name="tlh-gateway-zuul" />
+        <module name="tlh-hmily-consumer" />
+        <module name="tlh-hmily-provider" />
         <module name="tlh-hystrix-dashboard" />
         <module name="tlh-ratelimiter-starter" />
         <module name="tlh-scc-config-admin" />
@@ -28,6 +30,7 @@
         <module name="tlh-service-provider" />
         <module name="tlh-service-user" />
         <module name="tlh-spring-boot-admin" />
+        <module name="tlh-zipkin-server" />
         <module name="transaction-client-mq" />
         <module name="transaction-commons-mq" />
         <module name="transaction-service-mq" />
@@ -49,6 +52,9 @@
       <module name="tlh-gateway" target="1.8" />
       <module name="tlh-gateway-gateway" target="1.8" />
       <module name="tlh-gateway-zuul" target="1.8" />
+      <module name="tlh-hmily" target="1.8" />
+      <module name="tlh-hmily-consumer" target="1.8" />
+      <module name="tlh-hmily-provider" target="1.8" />
       <module name="tlh-hystrix-dashboard" target="1.8" />
       <module name="tlh-ratelimiter-starter" target="1.8" />
       <module name="tlh-scc-config-admin" target="1.6" />
@@ -62,6 +68,7 @@
       <module name="tlh-service-user" target="1.8" />
       <module name="tlh-spring-boot-admin" target="1.8" />
       <module name="tlh-transaction-mq" target="1.8" />
+      <module name="tlh-zipkin-server" target="1.8" />
       <module name="transaction-client-mq" target="1.8" />
       <module name="transaction-commons-mq" target="1.8" />
       <module name="transaction-example" target="1.8" />

@@ -18,6 +18,7 @@ spring-cloud组件学习和第三方开源项目集成
 15. tlh-auth：集成JTW实现统一认证
 16. tlh-transaction-mq：可靠消息一致性(分布式事务：最终一致性)
 17. tlh-gateway-gateway：Gateway实现网关
+18. tlh-hmily：hmily分布式事务应用
 
 
 
@@ -27,3 +28,4 @@ spring-cloud组件学习和第三方开源项目集成
 3. redission：https://github.com/redisson/redisson
 4. spring-boot-swagger：https://github.com/SpringForAll/spring-boot-starter-swagger
 5. Reflections：https://github.com/ronmamo/reflections
+6. Hmily：https://dromara.org/website/zh-cn/

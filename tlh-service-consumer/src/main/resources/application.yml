@@ -1,6 +1,9 @@
 spring:
   application:
     name: eureka-comsumer
+  zipkin:
+    base-url: zipkin-server
+    discovery-client-enabled: true
 server:
   port: 8083
 eureka:

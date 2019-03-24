@@ -26,6 +26,8 @@
         <module>tlh-auth</module>
         <module>tlh-transaction-mq</module>
         <module>tlh-gateway-gateway</module>
+        <module>tlh-zipkin-server</module>
+        <module>tlh-hmily</module>
     </modules>
     <packaging>pom</packaging>
 

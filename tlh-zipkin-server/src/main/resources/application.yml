@@ -1,0 +1,15 @@
+server:
+  port: 9411
+eureka:
+  instance:
+    appname: zipkin-server
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 5
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8089/eureka/
+spring:
+  application:
+    name: zipkin-server
