@@ -10,6 +10,6 @@ import org.tlh.hmily.entity.Teacher;
  */
 public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
 
-    boolean deleteTeacherByName(String name);
+    int deleteTeacherByName(String name);
 
 }

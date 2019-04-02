@@ -29,7 +29,7 @@ public class TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
 
-    @Hmily
+    @Hmily(confirmMethod = "confirmAddTeacher",cancelMethod = "cancelAddTeacher")
     @Transactional
     public boolean addTeacher(TeacherDto teacherDto){
         try {
@@ -44,20 +44,24 @@ public class TeacherService {
             BeanUtils.copyProperties(teacherDto,teacher);
             teacher.setAuthId(user.getId());
             this.teacherRepository.save(teacher);
-            return true;
+            throw new RuntimeException("create teacher error");
+//            return true;
         } catch (Exception e) {
             log.error("add teacher error",e);
+            //此处除了记录异常信息意外，必须抛出异常才能让hmily框架进入cancel阶段
+            throw e;
         }
-        return false;
     }
 
     public boolean confirmAddTeacher(TeacherDto teacherDto){
+        System.out.println("主动方 confirm");
         return true;
     }
 
     @Transactional
     public boolean cancelAddTeacher(TeacherDto teacherDto){
-        return this.teacherRepository.deleteTeacherByName(teacherDto.getName());
+        System.out.println("被动方 cancel");
+        return this.teacherRepository.deleteTeacherByName(teacherDto.getName())>0;
     }
 
 }

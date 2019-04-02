@@ -40,3 +40,10 @@ org:
         url: jdbc:mysql:///hmily_tcc
         username: root
         password: 123456
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 500000
+        readTimeout: 500000
+        loggerLevel: basic

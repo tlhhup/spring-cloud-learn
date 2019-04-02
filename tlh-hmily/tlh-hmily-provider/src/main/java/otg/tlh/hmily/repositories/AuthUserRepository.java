@@ -18,6 +18,6 @@ public interface AuthUserRepository extends JpaRepository<AuthUser,Integer> {
     @Query(value = "update AuthUser set status=?3 where userName=?1 and type=?2")
     int updateUserStatus(String userName,int type,int status);
 
-    boolean deleteAuthUserByUserNameAndType(String userName,int type);
+    int deleteAuthUserByUserNameAndType(String userName,int type);
 
 }

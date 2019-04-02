@@ -35,7 +35,8 @@ public class AuthUserService {
 
             AuthUserRepDto result = new AuthUserRepDto();
             BeanUtils.copyProperties(authUser, result);
-            return result;
+            throw new RuntimeException("create user error");//模拟被动方出错，事务应该回滚
+            //return result;
         } catch (BeansException e) {
             log.error("create user error", e);
         }
@@ -44,12 +45,14 @@ public class AuthUserService {
 
     @Transactional
     public boolean confirmCreateUser(AuthUserDto userDto) {
+        System.out.println("被动方 confirm");
         return this.authUserRepository.updateUserStatus(userDto.getUserName(), userDto.getType(), 1)>0;
     }
 
     @Transactional
     public boolean cancelCreateUser(AuthUserDto userDto) {
-        return this.authUserRepository.deleteAuthUserByUserNameAndType(userDto.getUserName(), userDto.getType());
+        System.out.println("被动方 cancel");
+        return this.authUserRepository.deleteAuthUserByUserNameAndType(userDto.getUserName(), userDto.getType())>0;
     }
 
 }
