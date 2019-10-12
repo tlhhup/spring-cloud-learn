@@ -34,6 +34,11 @@
 
 ###client
 1. 添加依赖
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
 2. 编写bootstrap.yml文件添加上述第4种的信息(**注意必须在这个文件中**)
 
 		spring:
@@ -253,3 +258,159 @@
 			    public NestingProperty nestingProperty(){//2.使用定义bean的方式
 			        return new NestingProperty();
 			    }
+
+###client端拉取配置的原理
+1. 如果配置的是URL地址，直接通过bootstrap.yaml文件中配置的uri、profile、application.name和label信息**通过RestTemplate**发送请求(**注意config-server端暴露的地址**)拉取配置信息
+2. 如果配置的是通过服务发现的方式，首先从通过bootstrap.yaml文件中配置service-id从服务中心获取配置中心的地址，再通过profile、application.name和label信息通过RestTemplate发送请求(**注意config-server端暴露的地址**)拉取配置信息
+3. 关键类和代码
+	1. ConfigClientAutoConfiguration：基础配置信息，bootstrap.yaml文件中的内容
+
+			@Bean
+			public ConfigClientProperties configClientProperties(Environment environment,
+					ApplicationContext context) {
+				if (context.getParent() != null
+						&& BeanFactoryUtils.beanNamesForTypeIncludingAncestors(
+								context.getParent(), ConfigClientProperties.class).length > 0) {
+					return BeanFactoryUtils.beanOfTypeIncludingAncestors(context.getParent(),
+							ConfigClientProperties.class);
+				}
+				ConfigClientProperties client = new ConfigClientProperties(environment);
+				return client;
+			}
+	2. DiscoveryClientConfigServiceBootstrapConfiguration：基于服务发现
+
+			private void refresh() {
+				try {
+					//获取配置中心的ServiceID
+					String serviceId = this.config.getDiscovery().getServiceId();
+					List<String> listOfUrls = new ArrayList<>();
+					//通过服务发现，获取所有的配置中心的实例
+					List<ServiceInstance> serviceInstances = this.instanceProvider
+							.getConfigServerInstances(serviceId);
+					//遍历所有的配置中心，将其对应的真实地址记录到集合中
+					for (int i = 0; i < serviceInstances.size(); i++) {
+		
+						ServiceInstance server = serviceInstances.get(i);
+						String url = getHomePage(server);
+		
+						if (server.getMetadata().containsKey("password")) {
+							String user = server.getMetadata().get("user");
+							user = user == null ? "user" : user;
+							this.config.setUsername(user);
+							String password = server.getMetadata().get("password");
+							this.config.setPassword(password);
+						}
+		
+						if (server.getMetadata().containsKey("configPath")) {
+							String path = server.getMetadata().get("configPath");
+							if (url.endsWith("/") && path.startsWith("/")) {
+								url = url.substring(0, url.length() - 1);
+							}
+							url = url + path;
+						}
+		
+						listOfUrls.add(url);
+					}
+		
+					String[] uri = new String[listOfUrls.size()];
+					uri = listOfUrls.toArray(uri);
+					//设置到ConfigClientProperties对象中
+					this.config.setUri(uri);
+			.......
+	3. ConfigServiceBootstrapConfiguration 
+
+			//创建配置定位器，有他去拉取配置
+			@Bean
+			@ConditionalOnMissingBean(ConfigServicePropertySourceLocator.class)
+			@ConditionalOnProperty(value = "spring.cloud.config.enabled", matchIfMissing = true)
+			public ConfigServicePropertySourceLocator configServicePropertySource(ConfigClientProperties properties) {
+				ConfigServicePropertySourceLocator locator = new ConfigServicePropertySourceLocator(
+						properties);
+				return locator;
+			}  
+			
+			
+			
+			@Override
+			@Retryable(interceptor = "configServerRetryInterceptor")
+			public org.springframework.core.env.PropertySource<?> locate(
+					org.springframework.core.env.Environment environment) {
+				ConfigClientProperties properties = this.defaultProperties.override(environment);
+				CompositePropertySource composite = new CompositePropertySource("configService");
+				//获取RestTemplate对象
+				RestTemplate restTemplate = this.restTemplate == null
+						? getSecureRestTemplate(properties)
+						: this.restTemplate;
+				Exception error = null;
+				String errorBody = null;
+				try {
+					String[] labels = new String[] { "" };
+					if (StringUtils.hasText(properties.getLabel())) {
+						labels = StringUtils
+								.commaDelimitedListToStringArray(properties.getLabel());
+					}
+					String state = ConfigClientStateHolder.getState();
+					// Try all the labels until one works
+					for (String label : labels) {
+						//拉取配置信息
+						Environment result = getRemoteEnvironment(restTemplate, properties,
+								label.trim(), state);
+								
+								
+			private Environment getRemoteEnvironment(RestTemplate restTemplate,
+			ConfigClientProperties properties, String label, String state) {
+				//构建请求的URL地址，参考config-server端暴露的地址
+				String path = "/{name}/{profile}";
+				String name = properties.getName();
+				String profile = properties.getProfile();
+				String token = properties.getToken();
+				int noOfUrls = properties.getUri().length;
+				if (noOfUrls > 1) {
+					logger.info("Multiple Config Server Urls found listed.");
+				}
+		
+				Object[] args = new String[] { name, profile };
+				if (StringUtils.hasText(label)) {
+					if (label.contains("/")) {
+						label = label.replace("/", "(_)");
+					}
+					args = new String[] { name, profile, label };
+					path = path + "/{label}";
+				}
+				ResponseEntity<Environment> response = null;
+		
+				for (int i = 0; i < noOfUrls; i++) {
+					Credentials credentials = properties.getCredentials(i);
+					String uri = credentials.getUri();
+					String username = credentials.getUsername();
+					String password = credentials.getPassword();
+		
+					logger.info("Fetching config from server at : " + uri);
+		
+					try {
+						HttpHeaders headers = new HttpHeaders();
+						addAuthorizationToken(properties, headers, username, password);
+						if (StringUtils.hasText(token)) {
+							headers.add(TOKEN_HEADER, token);
+						}
+						if (StringUtils.hasText(state) && properties.isSendState()) {
+							headers.add(STATE_HEADER, state);
+						}
+		
+						final HttpEntity<Void> entity = new HttpEntity<>((Void) null, headers);
+						// 发送请求
+						response = restTemplate.exchange(uri + path, HttpMethod.GET, entity,
+								Environment.class, args);
+					}
+					.......
+		
+					if (response == null || response.getStatusCode() != HttpStatus.OK) {
+						return null;
+					}
+					// 解析响应，即获取到的配置信息
+					Environment result = response.getBody();
+					return result;
+				}
+		
+				return null;
+			}
