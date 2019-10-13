@@ -28,6 +28,7 @@
         <module>tlh-gateway-gateway</module>
         <module>tlh-zipkin-server</module>
         <module>tlh-hmily</module>
+        <module>tlh-config-alone</module>
     </modules>
     <packaging>pom</packaging>
 

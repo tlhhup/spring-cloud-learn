@@ -6,6 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="alone-config-client" />
+        <module name="alone-config-server" />
         <module name="chapter-2" />
         <module name="gateway-swagger-butler-stater" />
         <module name="tlh-auth" />
@@ -40,10 +42,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="alone-config-client" target="1.8" />
+      <module name="alone-config-server" target="1.8" />
       <module name="chapter-2" target="1.8" />
       <module name="gateway-swagger-butler-stater" target="1.8" />
       <module name="spring-cloud-learn" target="1.8" />
       <module name="tlh-auth" target="1.8" />
+      <module name="tlh-config-alone" target="1.8" />
       <module name="tlh-config-server" target="1.8" />
       <module name="tlh-config-server-db" target="1.8" />
       <module name="tlh-consume-feign" target="1.8" />

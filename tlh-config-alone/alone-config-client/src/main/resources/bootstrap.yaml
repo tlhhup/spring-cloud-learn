@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      label: dev                 # git的分支，只有在server端采用git进行配置管理是生效
+      profile: dev               # 环境
+      name: alone-config-client  # 拉取那个项目的配置信息
+      uri: http://localhost:10010 # 配置中心的地址 数组类型

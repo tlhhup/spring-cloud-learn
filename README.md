@@ -19,7 +19,7 @@ spring-cloud组件学习和第三方开源项目集成
 16. tlh-transaction-mq：可靠消息一致性(分布式事务：最终一致性)
 17. tlh-gateway-gateway：Gateway实现网关
 18. tlh-hmily：hmily分布式事务应用
-
+19. tlh-config-alone：在Spring boot项目中使用config server进行配置管理
 
 
 ### 第三方开源项目

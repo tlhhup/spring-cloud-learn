@@ -1,0 +1,12 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: alone-config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file://Volumes/文档/学习/spring-cloud-learn/config-repo # 设置文件存储的位置
+  profiles:
+    active: native  # 使用本地文件模式是必须配置，否则默认启用的git方式会报设置git.url的错误
