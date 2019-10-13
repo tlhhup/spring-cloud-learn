@@ -7,7 +7,7 @@
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
 2. 配置类添加注解EnableConfigServer
-3. 所有的http的API都可以在EnvironmentController和ResourceController中获取
+3. 所有的http的API都可以在**EnvironmentController**和**ResourceController**中获取
 
 	                 
 		/encrypt/{name}/{profiles}    
@@ -168,6 +168,72 @@
 			POST http://待刷新的服务地址/actuator/refresh
 	5. RefreshScope说明
 		1. 当该注解添加在使用了Configuration注解的配置类时，并不意味着该类中的所有的bean都会重新被加载，除非该bean也添加了RefreshScope注解
+	6. **刷新的endpoint说明** 
+		1. 在项目启动时WebMvcEndpointHandlerMapping中可以查看所有的endpoints，将所有的endpoints注入到AbstractWebMvcEndpointHandlerMapping对象中，最终请求的处理会通过该对象进行方法到具体的endpoint中(可以理解为HandlerMapping的意义)
+
+				@Override
+				protected void initHandlerMethods() {
+					for (ExposableWebEndpoint endpoint : this.endpoints) {
+						for (WebOperation operation : endpoint.getOperations()) {
+							// 1.注册所有的endpoint
+							registerMappingForOperation(endpoint, operation);
+						}
+					}
+					if (StringUtils.hasText(this.endpointMapping.getPath())) {
+						registerLinksMapping();
+					}
+				}
+				
+				// 2.将endpoint进行包装
+				private void registerMappingForOperation(ExposableWebEndpoint endpoint,
+						WebOperation operation) {
+					OperationInvoker invoker = operation::invoke;
+					//将endpoint进行包装ServletWebOperation对象
+					ServletWebOperation servletWebOperation = wrapServletWebOperation(endpoint,
+							operation, new ServletWebOperationAdapter(invoker));
+					//注册handlerMapper，并将对应的handler和handlerAdapter进行配置
+					registerMapping(createRequestMappingInfo(operation),
+							new OperationHandler(servletWebOperation), this.handleMethod);
+				}
+				
+				// 3.处理器，可以理解为handler,即在Spring mvc中定义的每个处理请求的方法，最后的请求由该对象进行转发到真实的endpoint上
+				private final Method handleMethod = ReflectionUtils.findMethod(OperationHandler.class,
+				"handle", HttpServletRequest.class, Map.class);
+				
+				private final class OperationHandler {
+
+					private final ServletWebOperation operation;
+			
+					OperationHandler(ServletWebOperation operation) {
+						this.operation = operation;
+					}
+			
+					@ResponseBody
+					public Object handle(HttpServletRequest request,
+							@RequestBody(required = false) Map<String, String> body) {
+							//4.调用真实的endpoint的方法进行处理
+						return this.operation.handle(request, body);
+					}
+			
+				}
+		2. refresh的endpoint在**RefreshEndpoint**进行定义
+
+				@Endpoint(id = "refresh")
+				public class RefreshEndpoint {
+				
+					private ContextRefresher contextRefresher;
+				
+					public RefreshEndpoint(ContextRefresher contextRefresher) {
+						this.contextRefresher = contextRefresher;
+					}
+				
+					@WriteOperation
+					public Collection<String> refresh() {
+						Set<String> keys = contextRefresher.refresh();
+						return keys;
+					}
+	
+				} 	
 2. 集成消息总线自动刷新(config-server端)
 	1. 添加依赖(在server和client端都需要添加)
 	
